@@ -1,0 +1,119 @@
+#summary All the changes since the game's conception.
+===Full Builds===
+*Version 1.4.4*
+  * Added difficulty settings
+  * Added a setting to adjust the computer's play speed
+  * Made the classic cards the default style
+  * Changed the draw pile count text to white when using the simple card style
+
+*Version 1.4.3*
+  * More fixes to the undo mechanism
+
+*Version 1.4.2*
+  * Bug fixes with the undo mechanism
+  * Fixed restoring a game that was saved during the computer's turn
+  * Clear old saves on first launch. They were causing too many problems and this way we can have a fresh start.
+
+*Version 1.4.1*
+  * Added an option in the Settings menu to choose the style of cards to use
+
+*Version 1.4.0*
+  * New card images
+  * Percentages for games won/lost
+  * Changes to the game engine to make things more efficient
+
+*Version 1.3.3*
+  * Cards should be easier to get in place
+  * A few more bug fixes
+
+*Version 1.3.1* & *Version 1.3.2*
+  * Bug fixes
+
+*Version 1.3*
+  * Possible fix for people who had the game freeze during the computer's turn
+  * Added in some notifications when an error occurs to help locate problems
+
+*Version 1.2*
+  * Fixed game restarting when keyboard is opened
+  * Re-added help message for the first game
+
+*Version 1.1*
+  * Bug fixes
+
+*Version 1.0*
+  * Small improvement for people with freezing issues
+
+===Beta Builds===
+
+*Version 0.920*
+  * Cleaned up a lot of code
+  * Made some changes that should help with force close issues
+  * Some very small bug fixes
+
+*Version 0.918.2*
+  * Usernames limited to one line but increased max characters to 24
+
+*Version 0.918.1*
+  * More fixes for force close issues
+  * Highlight empty piles when a playable card is moved over them
+  * Fixed a bug where the game was saving multiplayer games
+  * Fixed a bug where clicking the location of the deck after a game ended would cause a win/loss every click
+
+*Version 0.918*
+  * Fixes for force close issues caused by running out of memory
+  * Increased support for older devices and devices running Android 1.6
+  * More speed improvements
+
+*Version 0.915* - *Version 0.915.3*
+  * Undo button in single player
+  * Sort Hand toggles auto-sort
+  * Speed improvements
+  * A few changes to the Settings screen
+
+*Version 0.907*
+  * End turn by tapping the draw pile
+  * Help moved to an online file so it can be changed without having to release an updated app. The permission to access network state is to check for internet access first and show the offline help if there is no internet access
+
+*Version 0.904*
+  * Bug fixes
+
+*Version 0.903*
+  * Added a Hints & Tips section to the help menu for stuff that isn’t exactly obvious
+  * Reworked the computer’s strategy to allow for difficulty settings in the future
+  * Changed the way saving works so that it is possible to save the game during the computer’s turn and have it restore to that point
+  * Automatically pause the game when switching to another application or viewing Settings, Help, or About
+  * Changed Autosave to automatically save the game before quitting, when switching to another application, after pressing the home button, and after each player’s turn. This way the game will be saved in case the Android OS decides to kill the game while it is paused in the background or the phone suddenly loses power
+
+*Version 0.901.2*
+  * Added an Autosave option to settings
+
+*Version 0.901*
+  * Added the ability to save games, one per user. When saving the game, the computer will quickly finish their turn then it will save on your turn
+  * Moved the delete user button to the preference screen
+  * You can now play a card directly under a pile if you have an empty spot available – rather than playing a card in the empty spot then moving the pile on top of it
+
+*Version 0.829.1*
+  * Bug fixes
+
+*Version 0.827.1*
+  * Added a dialog to help new users
+
+*Version 0.827*
+  * Fixed new user bug (hopefully)
+  * Added settings to disable various warnings
+  * Added “Check for Updates” and “Email the Developer” in settings
+  * “Visit Website” in settings links to the Kings in the Corner page for easy access to the Change Log
+  * Cleaned up the help screen
+  * Revised some code – hopefully everything still works
+
+*Version 0.819.0*
+  * Added a “Settings” button to the home screen
+  * Removed some possibly copyrighted images ;)
+
+*Version 0.708.1*
+  * “New User” option in preferences
+  * List to select current user
+  * Option to delete users rather than clear stats so unused users do not use space on the phone
+  * Stats are stored in files to allow for full removal
+
+_Anything else is ancient history._

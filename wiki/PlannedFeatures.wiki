@@ -1,0 +1,22 @@
+#summary Information about upcoming releases.
+
+= Coming soon, hopefully =
+
+  * Setting to change the computer's play speed
+
+  * Play 2-4 player modes with all computer controlled opponents
+
+= Planned for Next Major Version =
+
+  * Option to change computer AI difficulty
+
+  * Ability to change card styles mid-game
+
+= Long-Term Goals =
+
+  * Play multi-player games across devices using bluetooth
+
+  * New main menu background and redesign statistics page - Any suggestions?
+
+
+*Notice:* The features listed on this page are not definite and may or may not actually make it into the game.

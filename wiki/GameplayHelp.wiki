@@ -1,0 +1,22 @@
+#summary Gameplay Help
+
+== Starting the Game ==
+
+All players start with 7 cards in their hand. The rest of the deck is placed in the center of the table as a draw pile. The top 4 cards are placed face up around the draw pile, one card on each side.
+
+
+== On Your Turn ==
+
+You begin your turn by drawing a card, which is done for you automatically. You then attempt to get rid of all your cards by playing on the stacks around the draw pile. There are essentially 3 types of moves that you can make:
+  * Play a card from your hand directly on one of the non-empty stacks around the draw pile. This must be done in descending order of value and alternating colors.
+  Example: If a stack contains a <FONT color="red">red 9</FONT> covered by a *black 8*, the only card that can be played on that stack would be a <FONT color="red">red 7</FONT>.
+
+  * Move one stack on top of another stack. This can be done if the first card in the stack being moved can be played on top of the last card in the stack you are moving it to, following the same rules as in #1.
+  Example: You can move a stack with a *black 5* covered by a <FONT color="red">red 4</FONT> onto a stack covered by a <FONT color="red">red 6</FONT>. 
+
+  * Start a new stack with a King or a card from your hand. Kings can be played from your hand or moved from a stack to an empty corner of the draw pile to start a new stack on the corner. Also, after moving any stack onto another stack, any card from your hand can be played in the empty slot to start a new stack.
+
+Note: In game, only the top and bottom cards of a stack are shown in order to save space for smaller screens. If you see a *black 10* covered by a *black 8* there is actually a <FONT color="red">red 9</FONT> between them. Since only the top and bottom cards are used for playing, the middle cards are not shown.
+
+== Ending Your Turn ==
+Your turn is over when you can not play any cards or move any stacks. To end your turn, tap the draw pile in the middle of the table.

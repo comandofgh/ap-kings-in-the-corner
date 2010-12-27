@@ -1,0 +1,24 @@
+#summary Main wiki page
+#labels Featured
+
+= Welcome to the wiki page! =
+
+To the left you will find links to all the topics covered by this wiki.
+Leave a comment at the bottom of this page if you feel a new topic needs to be added.
+If you feel there needs to be an addition to an already existing topic, leave a comment at the bottom of the page you feel it belongs with.
+
+
+= Table of Contents =
+
+Here are the general topics covered and a brief description of each:
+  * [MainPage Welcome] - This page
+
+  * Release Information  
+    * [Changelog Changelog] - All the changes that have been made to the game
+    * [PlannedFeatures Planned Features] - Information about upcoming releases
+
+  * Help
+    * [GameplayHelp How To Play] - The rules of the game
+    * [ModesHelp Game Modes] - Explanation of single player and multi-player game modes
+    * [HintsHelp Hints & Tips] - Helpful hints that make the game go more smoothly
+    * [IssuesHelp Reporting Issues] - How to contact the developers if a problem arises
