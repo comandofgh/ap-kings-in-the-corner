@@ -1,0 +1,22 @@
+<LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android" android:background="#FFFFFF" android:id="@+id/AboutLayoutRoot"><ScrollView android:id="@+id/ScrollView02" android:layout_width="wrap_content" android:layout_height="wrap_content"><TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingRight="7dip" android:id="@+id/AboutLayoutRoot2" android:orientation="vertical"><TextView android:textSize="20dip" android:paddingTop="6dip" android:text="@string/about_title_about" android:id="@+id/title_about" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textColor="#0000FF"></TextView><TextView android:textSize="13dip" android:paddingTop="3dip" android:text="@string/about_summary_about" android:id="@+id/summary_about" android:layout_height="wrap_content" android:layout_width="wrap_content"></TextView><TextView android:textSize="20dip" android:paddingTop="10pt" android:text="@string/about_title_legal" android:id="@+id/title_legal" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textColor="#0000FF"></TextView><TextView android:textSize="12dip" android:paddingTop="3dip" android:text="@string/about_summary_legal" android:id="@+id/summary_legal" android:layout_height="wrap_content" android:layout_width="wrap_content"></TextView><TextView android:textSize="20dip" android:paddingTop="10pt" android:id="@+id/title_credits" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textColor="#0000FF" android:text="@string/about_title_credits"></TextView>
+<TextView android:textSize="13dip" android:id="@+id/summary_credits" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/about_summary_credits"></TextView><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#0000FF" android:paddingTop="10pt" android:textSize="20dip" android:text="@string/about_title_contact" android:id="@+id/title_contact"></TextView><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="13dip" android:text="@string/about_summary_contact" android:id="@+id/summary_contact"></TextView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</TableLayout></ScrollView></LinearLayout>
