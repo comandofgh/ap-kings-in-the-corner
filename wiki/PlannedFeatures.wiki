@@ -2,13 +2,7 @@
 
 = Coming soon, hopefully =
 
-  * Setting to change the computer's play speed
-
   * Play 2-4 player modes with all computer controlled opponents
-
-= Planned for Next Major Version =
-
-  * Option to change computer AI difficulty
 
   * Ability to change card styles mid-game
 
