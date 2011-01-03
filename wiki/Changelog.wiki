@@ -1,5 +1,8 @@
 #summary All the changes since the game's conception.
 ===Full Builds===
+*Version 1.4.5*
+  * Added setting to Sort Hand by default for each new single player game.
+
 *Version 1.4.4*
   * Added difficulty settings
   * Added a setting to adjust the computer's play speed
