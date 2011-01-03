@@ -49,7 +49,8 @@ public class GameEngine extends Observable implements Runnable {
 							 STYLE_PLAY = 2;
 	
 	// User preferences
-	private boolean mDrawPileCount, mHighlightCards, mAutosave, mEmptyDeckWarning, mWarnedEmpty;
+	private boolean mDrawPileCount, mHighlightCards, mAutosave, mEmptyDeckWarning,
+					mWarnedEmpty, mSortHand;
 	private String mUsername; // Only set during creation so it is not possible to switch mid-game
 	private String mCardStyle;
 	private boolean mShowComputerHand; // Cheats
@@ -110,8 +111,8 @@ public class GameEngine extends Observable implements Runnable {
 		mPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 		mUsername = mPrefs.getString(mContext.getResources().getString(R.string.pref_key_username), mContext.getResources().getString(R.string.username_none));
 		mCardStyle = mPrefs.getString(mContext.getResources().getString(R.string.pref_key_cardImage), mContext.getResources().getString(R.string.cardImage_default));
-		mComputerDelay = mPrefs.getInt(mContext.getResources().getString(R.string.pref_key_computerDelay), 1000);
 		mDifficulty = Integer.parseInt(mPrefs.getString(mContext.getResources().getString(R.string.pref_key_difficulty), "0"));
+		updatePrefs();
 		mSaveString = mUsername + "_save.dat";
 		mTurn = -1;
 		mWinner = -1;
@@ -439,6 +440,11 @@ public class GameEngine extends Observable implements Runnable {
 			mCorners[i] = new Pile(i+4, null, null);
 		}
 		
+		// Set the default Sort Hand option
+		if (mPlayerCount == 1 && mSortHand) {
+			mHands[0].toggleSortColor();
+		}
+		
 		nextTurn();
 	}
 
@@ -736,12 +742,9 @@ public class GameEngine extends Observable implements Runnable {
 		mHighlightCards = mPrefs.getBoolean(mContext.getResources().getString(R.string.pref_key_highlightCards), true);
 		mAutosave = mPrefs.getBoolean(mContext.getResources().getString(R.string.pref_key_autosave), false);
 		mEmptyDeckWarning = mPrefs.getBoolean(mContext.getResources().getString(R.string.pref_key_emptyDeckWarning), true);
+		mSortHand = mPrefs.getBoolean(mContext.getResources().getString(R.string.pref_key_sortHand), false);
 		// Cheats
 		mShowComputerHand = mPrefs.getBoolean(mContext.getResources().getString(R.string.pref_key_showComputerHand), false);
-	}
-	
-	public void aboutCardsShown() {
-		mPrefs.edit().putBoolean(mContext.getResources().getString(R.string.pref_key_aboutCards), true).commit();
 	}
 
 	// Private methods

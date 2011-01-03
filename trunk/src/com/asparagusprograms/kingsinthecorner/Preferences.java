@@ -69,6 +69,17 @@ public class Preferences extends PreferenceActivity implements OnSharedPreferenc
 				return true;
 			}	
 		});
+		// Set up the check for updates button
+		PreferenceScreen update = (PreferenceScreen)findPreference(getResources().getString(R.string.pref_key_update));
+		update.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				Intent updateIntent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.link_market)));
+				updateIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(updateIntent);
+				return false;
+			}
+		});
 	}
 
 	@Override
