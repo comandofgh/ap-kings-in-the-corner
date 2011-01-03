@@ -4,7 +4,7 @@
 	<!-- Application Info -->
 	<string name="app_name">Kings in the Corner</string>
 	<string name="copyright">© 2010 Asparagus Programs</string>
-	<string name="app_version">1.4.4</string>
+	<string name="app_version">1.4.5</string>
 	
 	<!-- Buttons -->
 	<string name="button_playGame">Play game</string>
@@ -102,6 +102,10 @@
 		<string name="pref_key_autosave">Autosave</string>
 		<string name="pref_title_autosave">Autosave</string>
 		<string name="pref_summary_autosave">Automatically saves single player games periodically and before quitting</string>
+		
+		<string name="pref_key_sortHand">SortHand</string>
+		<string name="pref_title_sortHand">Sort Hand by Default</string>
+		<string name="pref_summary_sortHand">Automatically turns on Sort Hand at the start of each single player game</string>
 				
 		<string name="pref_key_emptyDeckWarning">EmptyDeckWarning</string>
 		<string name="pref_title_emptyDeckWarning">Empty Deck Warning</string>

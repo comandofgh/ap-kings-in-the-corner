@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -52,12 +53,17 @@
             android:title="@string/pref_heading_gameplay">
             
         <ListPreference android:entries="@array/entries_difficulty" android:entryValues="@array/entryvalues_difficulty" android:dialogTitle="@string/dialog_title_difficulty" android:title="@string/pref_title_difficulty" android:key="@string/pref_key_difficulty" android:summary="@string/pref_summary_difficulty" android:defaultValue="0"></ListPreference><com.asparagusprograms.kingsinthecorner.SeekBarPreference
-        	android:defaultValue="1000" android:dialogMessage="Set Delay" android:title="@string/pref_title_computerDelay" android:summary="@string/pref_summary_computerDelay" android:key="@string/pref_key_computerDelay" android:text=" milliseconds" android:max="3000"/>
+        	android:summary="@string/pref_summary_computerDelay" android:max="3000" android:title="@string/pref_title_computerDelay" android:text=" milliseconds" android:key="@string/pref_key_computerDelay" android:dialogMessage="Set Delay" android:defaultValue="1000"/>
             
 		<CheckBoxPreference
                 android:key="@string/pref_key_autosave"
                 android:title="@string/pref_title_autosave"
                 android:summary="@string/pref_summary_autosave" />
+                
+    	<CheckBoxPreference
+                android:key="@string/pref_key_sortHand"
+                android:title="@string/pref_title_sortHand"
+                android:summary="@string/pref_summary_sortHand"/>
                                 
 		<CheckBoxPreference
                 android:key="@string/pref_key_emptyDeckWarning"
@@ -119,10 +125,6 @@
         		android:key="@string/pref_key_update"
                 android:title="@string/pref_title_update"
                 android:summary="@string/app_version">
-
-            <intent android:action="android.intent.action.VIEW"
-                    android:data="@string/link_market" />
-
         </PreferenceScreen>
 
         <PreferenceScreen
