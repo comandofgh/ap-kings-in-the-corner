@@ -1,5 +1,8 @@
 #summary All the changes since the game's conception.
 ===Full Builds===
+*Version 1.4.7*
+  * Undo fix
+
 *Version 1.4.6*
   * Fix for the undo button creating duplicate cards
 
