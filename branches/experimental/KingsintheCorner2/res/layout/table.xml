@@ -1,0 +1,7 @@
+<LinearLayout android:id="@+id/LinearLayout01"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical">
+<com.asparagusprograms.kingsinthecorner.CardTableView
+android:id="@+id/Table"
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/bg_table"/>
+</LinearLayout>
