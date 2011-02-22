@@ -3,8 +3,8 @@
 
 	<!-- Application Info -->
 	<string name="app_name">Kings in the Corner</string>
-	<string name="copyright">© 2010 Asparagus Programs</string>
-	<string name="app_version">1.4.5</string>
+	<string name="copyright">© 2010-2011 Asparagus Programs</string>
+	<string name="app_version">1.5.0</string>
 	
 	<!-- Buttons -->
 	<string name="button_playGame">Play game</string>
@@ -62,10 +62,15 @@
 	<string name="dialog_title_difficulty">Choose Difficulty</string>
 	
 	<!-- Preference screen -->
-	<string name="pref_heading_user">User settings</string>
+	<string name="pref_key_settings">Settings</string>
+	<string name="pref_title_settings">Settings</string>
+	
+	<string name="pref_key_userSettings">UserSettings</string>
+	<string name="pref_title_userSettings">User Settings</string>
+	<string name="pref_summary_userSettings">Select/create/delete users, clear saves</string>
 	
 		<string name="pref_key_username">Username</string>
-		<string name="pref_title_username">User Name</string>
+		<string name="pref_title_username">Current User</string>
 		<string name="pref_summary_username">No user name selected. Wins/losses will not be tracked</string>
 		
 		<string name="pref_key_newUser">NewUser</string>
@@ -88,8 +93,9 @@
 			<string name="pref_title_noUserWarning">No User Warning</string>
 			<string name="pref_summary_noUserWarning">Shows a warning before starting a game when no user is selected</string>
 		
-	<string name="pref_key_gameplay">GameplayCategory</string>
-	<string name="pref_heading_gameplay">Gameplay settings</string>
+	<string name="pref_key_gameplaySettings">GameplaySettings</string>
+	<string name="pref_title_gameplaySettings">Gameplay Settings</string>
+	<string name="pref_summary_gameplaySettings">Difficulty, play speed, autosave, etc.</string>
 	
 		<string name="pref_key_computerDelay">ComputerDelay</string>
 		<string name="pref_title_computerDelay">Computer Delay</string>
@@ -111,29 +117,53 @@
 		<string name="pref_title_emptyDeckWarning">Empty Deck Warning</string>
 		<string name="pref_summary_emptyDeckWarning">Shows a warning when the deck runs out of cards</string>
 		
-		<string name="pref_key_cheatString">cheats.enabled</string>
-		<string name="pref_key_cheatScreen">CheatScreen</string>
-		<string name="pref_title_cheatScreen">Cheats</string>
-		<string name="pref_summary_cheatScreen">Enable/diasble various cheats</string>
-			
-			<string name="pref_key_showComputerHand">ShowComputerHand</string>
-			<string name="pref_title_showComputerHand">Show Computer Hand</string>
-			<string name="pref_summary_showComputerHand">Shows the face of cards in the computer\'s hand</string>
-			
-			<string name="pref_key_autoWin">AutoWin</string>
-			<string name="pref_title_autoWin">Enable \"I Win\" button</string>
-			<string name="pref_summary_autoWin">Add a button in the menu to automatically win in single player</string>
-			
-			<string name="pref_key_cheatsEnabled">CheatsEnabled</string>
-			<string name="pref_title_cheatsEnabled">Enable Cheats</string>
-			<string name="pref_summary_cheatsEnabled">Uncheck to remove this cheat menu and disable all cheats</string>
 		
-	<string name="pref_heading_display">Display settings</string>
+		<string name="pref_key_cheatsAllString">cheats.enabled</string>		
+		<string name="pref_key_cheatScreen">CheatScreen</string>
+		<string name="pref_title_cheatScreen">Cheat Codes</string>
+		<string name="pref_summary_cheatScreen">Enter codes, enable/diasble cheats</string>
+		
+			<string name="pref_key_enterCode">EnterCode</string>
+			<string name="pref_title_enterCode">Enter Code</string>
+			<string name="pref_summary_enterCode">Enter a code to unlock cheats</string>
+			
+			<string name="pref_key_cheatsCategory">CheatsCategory</string>
+			<string name="pref_title_cheatsCategory">Unlocked Cheats</string>
+			
+				<string name="pref_key_cheatsComputerHandString">cheats.hand</string>
+				<string name="pref_key_cheatsComputerHandUnlocked">CheatsComputerHandUnlocked</string>
+				<string name="pref_key_cheatsComputerHand">ShowComputerHand</string>
+				<string name="pref_title_cheatsComputerHand">Show Computer Hand</string>
+				<string name="pref_summary_cheatsComputerHand">Shows the face of cards in the computer\'s hand</string>
+			
+				<string name="pref_key_cheatsWinString">cheats.win</string>
+				<string name="pref_key_cheatsWinUnlocked">CheatsWinUnlocked</string>
+				<string name="pref_key_cheatsWin">CheatsWin</string>
+				<string name="pref_title_cheatsWin">I Win</string>
+				<string name="pref_summary_cheatsWin">Enables the I Win button in the cheats submenu</string>
+				
+				<string name="pref_key_cheatsTrashString">cheats.trash</string>
+				<string name="pref_key_cheatsTrashUnlocked">CheatsTrashUnlocked</string>
+				<string name="pref_key_cheatsTrash">CheatsTrash</string>
+				<string name="pref_title_cheatsTrash">Trash Opponent</string>
+				<string name="pref_summary_cheatsTrash">Enables the Trash Opponent button in the cheats submenu</string>
+			
+				<string name="pref_key_disableCheats">DisableCheats</string>
+				<string name="pref_title_disableCheats">Disable Cheats</string>
+				<string name="pref_summary_disableCheats">Click to remove all cheats</string>
+		
+	<string name="pref_key_displaySettings">DisplaySettings</string>
+	<string name="pref_title_displaySettings">Display Settings</string>
+	<string name="pref_summary_displaySettings">Card style, draw pile count, highlight cards</string>
 	
 		<string name="pref_key_cardImage">CardImage</string>
 		<string name="pref_title_cardImage">Card Style</string>
 		<string name="pref_summary_cardImage">If you are currently in a game, you will need to return to the main menu for changes to take effect</string>
 		<string name="cardImage_default">classic</string>
+		<string name="pref_key_cardBack">CardBack</string>
+		<string name="pref_title_cardBack">Card Back Style</string>
+		<string name="pref_summary_cardBack">Set the image on the back of the cards</string>
+		<string name="cardBack_default">classic</string>
 		<string name="pref_key_aboutCards">AboutCards</string>
 		
 		<string name="pref_key_drawPileCount">DrawPileCount</string>
@@ -144,7 +174,8 @@
 		<string name="pref_title_hightlightCards">Highlight Cards</string>
 		<string name="pref_summary_highlightCards">Highlights a card when a playable card is dragged over it</string>
 		
-	<string name="pref_heading_app">Application information</string>	
+	<string name="pref_key_applicationInformation">ApplicationInformation</string>
+	<string name="pref_title_applicationInformation">Application Information</string>
 	
 		<string name="pref_key_update">CheckForUpdates</string>
 		<string name="pref_title_update">Check for Updates</string>
@@ -171,12 +202,17 @@
 	<string name="toast_usernameStart">User name must begin with a letter</string>
 	<string name="toast_yourTurn">Your Turn</string>
 	<string name="username_none">None</string>
-	<string name="toast_usernameCreated">User name created</string>
+	<string name="toast_usernameCreated">User name %1$s created</string>
+	<string name="toast_usernameDeleted">User name %1$s removed</string>
 	<string name="toast_usernameExists">User name already exists</string>
 	<string name="toast_usernameInvalid">Invalid user name</string>
+	<string name="toast_savesCleared">Saved games cleared</string>
 	<string name="toast_gameRestored">Game Restored</string>
 	<string name="toast_usernamePeriod">User name cannot contain a period</string>
-	<string name="toast_cheatsEnabled">You little cheater...</string>
+	<string name="toast_cheatsAllEnabled">You little cheater...</string>
+	<string name="toast_cheatsWinEnabled">I Win unlocked</string>
+	<string name="toast_cheatsTrashEnabled">Trash Opponent unlocked</string>
+	<string name="toast_cheatsComputerHandEnabled">Show Computer Hand unlocked</string>
 	<string name="toast_fileNotFoundException">Error: File not found</string>
 	<string name="toast_streamCorruptedException">Error: Stream corrupted</string>
 	<string name="toast_IOException">Error: IO exception</string>
@@ -209,7 +245,7 @@
 	<string name="about_title_legal">Legal Stuff:</string>
 	<string name="about_summary_legal">Copyright ©2010 Asparagus Programs\n\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see\n&lt;http://www.gnu.org/licenses/&gt;.</string>
 	<string name="about_title_credits">Credits:</string>
-	<string name="about_summary_credits">The main title and \"select players\" text was made using cooltext.com\n\nThe classic card style was developed for the Gnome desktop project and was obtained from\n &lt;http://math.hws.edu/javanotes/c12/cards.png&gt;</string>
+	<string name="about_summary_credits">Title texts were made using cooltext.com\n\nThe classic card style was developed for the Gnome desktop project and was obtained from\n &lt;http://math.hws.edu/javanotes/c12/cards.png&gt;</string>
 	<string name="about_title_contact">Contact Information:</string>
 	<string name="about_summary_contact">&lt;asparagus.programs@gmail.com&gt;</string>
 	

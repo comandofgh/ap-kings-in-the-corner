@@ -10,5 +10,5 @@
 
 
 
-<Button android:layout_height="wrap_content" android:id="@+id/FirstRunDoneButton" android:text="Done" android:layout_width="100dip" android:layout_gravity="center_horizontal" android:layout_marginTop="10dip"></Button>
+<Button android:id="@+id/FirstRunDoneButton" android:text="Done" android:layout_gravity="center_horizontal" android:layout_marginTop="10dip" android:layout_width="120dip" android:layout_height="wrap_content"></Button>
 </LinearLayout>
