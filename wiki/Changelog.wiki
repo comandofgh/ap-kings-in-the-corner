@@ -1,5 +1,16 @@
 #summary All the changes since the game's conception.
 ===Full Builds===
+*Version 1.5.0*
+  * New main menu buttons and slightly lighter background
+  * New card backs and table images
+  * Ability to change images mid-game
+  * Color settings for certain texts
+  * Prettier stats screen
+  * Organized settings into categories
+  * Settings to enable Backup Manager to sync stats and settings with a Google account
+  * Moved all stats into a single file for use with Backup Manager
+  * and some other things..
+
 *Version 1.4.7*
   * Undo fix
 
