@@ -9,6 +9,8 @@
   * Organized settings into categories
   * Settings to enable Backup Manager to sync stats and settings with a Google account
   * Moved all stats into a single file for use with Backup Manager
+  * Changed the way cards are rotated and drawn to the screen to use less memory. Hopefully it makes the game run more smoothly
+  * Fixed a bug where the game tried to save stats when no user was selected
   * and some other things..
 
 *Version 1.4.7*
