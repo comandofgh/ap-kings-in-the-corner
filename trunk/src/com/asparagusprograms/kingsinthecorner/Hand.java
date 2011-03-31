@@ -17,7 +17,7 @@
 
 package com.asparagusprograms.kingsinthecorner;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -27,7 +27,7 @@ import android.graphics.Paint;
 public class Hand {
 
 	/** The cards in the hand. */
-	private Vector<Card> mHand;
+	private ArrayList<Card> mHand;
 	
 	/** Whether or not this hand is to be sorted by color */
 	private boolean mSortedColor;
@@ -54,7 +54,7 @@ public class Hand {
 	 * Constructs an empty hand object.
 	 */
 	public Hand() {
-		mHand = new Vector<Card>();
+		mHand = new ArrayList<Card>();
 		mSortedColor = false;
 		mHovered = false;
 		mNeedsShifted = true;
@@ -62,7 +62,7 @@ public class Hand {
 
 	/** Removes all cards in this hand. */
 	public void clear() {
-		mHand.removeAllElements();
+		mHand.clear();
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class Hand {
 	 */
 	public void addCard(Card card) {
 		if (card == null) return;
-		mHand.addElement(card);
+		mHand.add(card);
 		mNeedsShifted = true;
 		sortByColor();
 		shiftCardsNormal();
@@ -99,7 +99,7 @@ public class Hand {
 	 * 				card is not found, no card is removed.
 	 */
 	public void removeCard(Card card) {
-		if (mHand.removeElement(card)) {
+		if (mHand.remove(card)) {
 			mNeedsShifted = true;
 			shiftCardsNormal();
 		}
@@ -114,7 +114,7 @@ public class Hand {
 	 */
 	public void removeCard(int index) {
 		if (index >= 0 && index < mHand.size()) {
-			mHand.removeElementAt(index);
+			mHand.remove(index);
 			mNeedsShifted = true;
 			shiftCardsNormal();
 		}
@@ -136,7 +136,7 @@ public class Hand {
 	 */
 	public Card getCard(int index) {
 		if (index >= 0 && index < mHand.size())
-			return mHand.elementAt(index);
+			return mHand.get(index);
 		else
 			return null;
 	}
@@ -146,20 +146,20 @@ public class Hand {
 	 * the same suit are sorted by value.
 	 */
 	public void sortBySuit() {
-		Vector<Card> newHand = new Vector<Card>();
+		ArrayList<Card> newHand = new ArrayList<Card>();
 		while (mHand.size() > 0) {
 			int pos = 0;  // Position of minimal card.
-			Card c = mHand.elementAt(0);  // Minimal card.
+			Card c = mHand.get(0);  // Minimal card.
 			for (int i = 1; i < mHand.size(); i++) {
-				Card c1 = mHand.elementAt(i);
+				Card c1 = mHand.get(i);
 				if ( c1.getSuit() < c.getSuit() ||
 						(c1.getSuit() == c.getSuit() && c1.getValue() < c.getValue()) ) {
 					pos = i;
 					c = c1;
 				}
 			}
-			mHand.removeElementAt(pos);
-			newHand.addElement(c);
+			mHand.remove(pos);
+			newHand.add(c);
 		}
 		mHand = newHand;
 		mNeedsShifted = true;
@@ -171,20 +171,20 @@ public class Hand {
 	 * with the same value are sorted by suit.
 	 */
 	public void sortByValue() {
-		Vector<Card> newHand = new Vector<Card>();
+		ArrayList<Card> newHand = new ArrayList<Card>();
 		while (mHand.size() > 0) {
 			int pos = 0;  // Position of minimal card.
-			Card c = mHand.elementAt(0);  // Minimal card.
+			Card c = mHand.get(0);  // Minimal card.
 			for (int i = 1; i < mHand.size(); i++) {
-				Card c1 = mHand.elementAt(i);
+				Card c1 = mHand.get(i);
 				if ( c1.getValue() < c.getValue() ||
 						(c1.getValue() == c.getValue() && c1.getSuit() < c.getSuit()) ) {
 					pos = i;
 					c = c1;
 				}
 			}
-			mHand.removeElementAt(pos);
-			newHand.addElement(c);
+			mHand.remove(pos);
+			newHand.add(c);
 		}
 		mHand = newHand;
 		mNeedsShifted = true;
@@ -199,12 +199,12 @@ public class Hand {
 	public void sortByColor() {
 		if (!mSortedColor) return;
 		
-		Vector<Card> newHand = new Vector<Card>();
+		ArrayList<Card> newHand = new ArrayList<Card>();
 		while (mHand.size() > 0) {
 			int pos = 0;  // Position of minimal card.
-			Card c = mHand.elementAt(0);  // Minimal card.
+			Card c = mHand.get(0);  // Minimal card.
 			for (int i = 1; i < mHand.size(); i++) {
-				Card c1 = mHand.elementAt(i);
+				Card c1 = mHand.get(i);
 				if ( ((c1.getSuit() == 0 || c1.getSuit() == 3) && (c.getSuit() == 1 || c.getSuit() == 2)) ||
 						(((c1.getSuit() == 0 || c1.getSuit() == 3) && (c.getSuit() == 0 || c.getSuit() == 3)) &&
 								c1.getValue() < c.getValue()) ||
@@ -214,8 +214,8 @@ public class Hand {
 					c = c1;
 				}
 			}
-			mHand.removeElementAt(pos);
-			newHand.addElement(c);
+			mHand.remove(pos);
+			newHand.add(c);
 		}
 		mHand = newHand;
 	}
@@ -271,7 +271,7 @@ public class Hand {
 		for (int i = 0; i < numCards; i++) {
 			if (i < pos) margin = indent + i * visibleWidth;
 			else margin = indent + (i*visibleWidth) + mCardWidth;
-			mHand.elementAt(i).setPos(margin, mTop);
+			mHand.get(i).setPos(margin, mTop);
 		}		
 	}
 	
@@ -291,8 +291,8 @@ public class Hand {
 		
 		if (pos == -1 || pos >= count) return null;
 		
-		Card card = mHand.elementAt(pos);
-		mHand.removeElement(card);
+		Card card = mHand.get(pos);
+		mHand.remove(card);
 		hoverCardAt(tarx);
 		return card;
 	}
@@ -317,7 +317,7 @@ public class Hand {
 			else visibleWidth = (mHandWidth-2*mCardWidth)/(numCards-1);
 			
 			for (int i = 0; i < numCards; i++) {
-				int x = mHand.elementAt(i).getX();
+				int x = mHand.get(i).getX();
 				if (tarx >= x-(visibleWidth/2) && tarx < x-(visibleWidth/2)+visibleWidth) {
 					ans = i;
 					break;
@@ -326,7 +326,7 @@ public class Hand {
 			
 			// Do special checks for last card
 			if (visibleWidth == mCardWidth) {		
-				int x = mHand.lastElement().getX() + mCardWidth/2;
+				int x = mHand.get(mHand.size()-1).getX() + mCardWidth/2;
 				if (tarx > x) {
 					ans = numCards;
 				}
@@ -341,7 +341,7 @@ public class Hand {
 			else visibleWidth = (mHandWidth-mCardWidth)/(numCards-1);
 
 			for (int i = 0; i < numCards; i++) {
-				int x = mHand.elementAt(i).getX();
+				int x = mHand.get(i).getX();
 				if (i == numCards-1) visibleWidth = mCardWidth;	// The last card can be seen in full
 				if (tarx >= x && tarx < x + visibleWidth) {
 					ans = i;
@@ -394,7 +394,7 @@ public class Hand {
 
 		for (int i = 0; i < numCards; i++) {
 			int x = indent + i*offset;
-			mHand.elementAt(i).setPos(x, mTop);
+			mHand.get(i).setPos(x, mTop);
 		}
 	}
 	
@@ -410,7 +410,12 @@ public class Hand {
 		int count = mHand.size();
 
 		for (int i = 0; i < count; i++) {
-			mHand.elementAt(i).draw(c, paint, cardBack);
+			try {
+				mHand.get(i).draw(c, paint, cardBack);
+			} catch (ArrayIndexOutOfBoundsException ex) {
+				count = mHand.size();
+				i = -1;
+			}
 		}
 	}
 }
