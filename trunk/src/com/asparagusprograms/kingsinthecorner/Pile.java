@@ -1,5 +1,5 @@
 /**
- * Copyright 2010 Trevor Boyce
+ * Copyright 2010,2011 Trevor Boyce
  * 
  * This file is part of Kings in the Corner.
  *
@@ -46,13 +46,13 @@ public class Pile implements Serializable {
 	public Card last;  // Card covering all other cards, null if the top card is the only card
 
 	public transient Rect pos; // The rectangle specifying where this pile is placed on the table
-	public transient int rot; // The rotation of the pile
+	public transient int mPileType; // The rotation of the pile
 
 	/** Construct the pile **/
-	public Pile(int side, Card first, Card last) {
+	public Pile(int pileType, Card first, Card last) {
 		this.first = first;
 		this.last = last;
-		rot = side;
+		mPileType = pileType;
 		pos = new Rect();
 	}
 
@@ -152,116 +152,116 @@ public class Pile implements Serializable {
 		return false;
 	}
 
-	public void draw(Canvas c, int cardHeight) {
+	public void draw(Canvas c, int cardHeight, Context context, String style) {
 		if (first == null || c == null) return;
 
 		int rotation = 0;
 
-		if (rot == UP || rot == DOWN) rotation = 0;
-		else if (rot == LEFT || rot == RIGHT) rotation = 1;
-		else if (rot == UP_LEFT || rot == DOWN_RIGHT) rotation = 2;
-		else if (rot == UP_RIGHT || rot == DOWN_LEFT) rotation = 3;
+		if (mPileType == UP || mPileType == DOWN) rotation = 0;
+		else if (mPileType == LEFT || mPileType == RIGHT) rotation = 90;
+		else if (mPileType == UP_LEFT || mPileType == DOWN_RIGHT) rotation = 135;
+		else if (mPileType == UP_RIGHT || mPileType == DOWN_LEFT) rotation = 45;
 
-		if (first != null) first.setRotate(rotation);
-		if (last != null) last.setRotate(rotation);
+		if (first != null) first.setRotate(rotation, context, style);
+		if (last != null) last.setRotate(rotation, context, style);
 
 		if (!isCorner()) {
 			// Draw side
-			if (rot == LEFT) {
+			if (mPileType == LEFT) {
 				c.drawBitmap(first.getImage(), pos.left+(cardHeight/4), pos.top, null);
 				if (last != null) c.drawBitmap(last.getImage(), pos.left, pos.top, null);
 			}
 
-			else if (rot == UP) {
+			else if (mPileType == UP) {
 				c.drawBitmap(first.getImage(), pos.left, pos.top+(cardHeight/4), null);
 				if (last != null) c.drawBitmap(last.getImage(), pos.left, pos.top, null);
 			}
 
-			else if (rot == RIGHT) {
+			else if (mPileType == RIGHT) {
 				c.drawBitmap(first.getImage(), pos.left, pos.top, null);
 				if (last != null) c.drawBitmap(last.getImage(), pos.left+(cardHeight/4), pos.top, null);
 			}
 
-			else if (rot == DOWN) {
+			else if (mPileType == DOWN) {
 				c.drawBitmap(first.getImage(), pos.left, pos.top, null);
 				if (last != null) c.drawBitmap(last.getImage(), pos.left, pos.top+(cardHeight/4), null);
 			}
 		} else {
 			// Draw corner
-			if (rot == UP_LEFT) {
+			if (mPileType == UP_LEFT) {
 				c.drawBitmap(first.getImage(), pos.left, pos.top, null);
 				if (last != null) c.drawBitmap(last.getImage(), pos.left-(cardHeight/6), pos.top-(cardHeight/6), null);
 			}
 
-			else if (rot == UP_RIGHT) {
+			else if (mPileType == UP_RIGHT) {
 				c.drawBitmap(first.getImage(), pos.left, pos.top, null);
 				if (last != null) c.drawBitmap(last.getImage(), pos.left+(cardHeight/6), pos.top-(cardHeight/6), null);
 			}
 
-			else if (rot == DOWN_RIGHT) {
+			else if (mPileType == DOWN_RIGHT) {
 				c.drawBitmap(first.getImage(), pos.left, pos.top, null);
 				if (last != null) c.drawBitmap(last.getImage(), pos.left+(cardHeight/6), pos.top+(cardHeight/6), null);
 			}
 
-			else if (rot == DOWN_LEFT) {
+			else if (mPileType == DOWN_LEFT) {
 				c.drawBitmap(first.getImage(), pos.left, pos.top, null);
 				if (last != null) c.drawBitmap(last.getImage(), pos.left-(cardHeight/6), pos.top+(cardHeight/6), null);
 			}
 		}
 	}
 
-	public void drawSelected(Canvas c, int cardWidth, int cardHeight, int tarx, int tary) {
+	public void drawSelected(Canvas c, int cardWidth, int cardHeight, int tarx, int tary, Context context, String style) {
 		if (first == null) return;
 
-		first.setRotate(Card.NORMAL);
-		c.drawBitmap(first.getImage(), tarx-(cardWidth/2), tary-(cardHeight/6), null);
+		first.setRotate(0, context, style);
+		c.drawBitmap(first.getImage(), tarx-(cardWidth/2), tary-(cardHeight/4), null);
 
 		if (last != null) {
-			last.setRotate(Card.NORMAL);
-			c.drawBitmap(last.getImage(), tarx-(cardWidth/2), tary-(cardHeight/6)+(cardHeight/4), null);
+			last.setRotate(0, context, style);
+			c.drawBitmap(last.getImage(), tarx-(cardWidth/2), tary-(cardHeight/4)+(cardHeight/4), null);
 		}
 	}
 
 	public void drawHighlighted(Canvas c, Bitmap h, int cardHeight) {
 		if (!isCorner()) {
 			// Draw side
-			if (rot == LEFT) {
+			if (mPileType == LEFT) {
 				if (last == null) c.drawBitmap(h, pos.left+(cardHeight/4), pos.top, null);
 				else c.drawBitmap(h, pos.left, pos.top, null);
 			}
 
-			else if (rot == UP) {
+			else if (mPileType == UP) {
 				if (last == null) c.drawBitmap(h, pos.left, pos.top+(cardHeight/4), null);
 				else c.drawBitmap(h, pos.left, pos.top, null);
 			}
 
-			else if (rot == RIGHT) {
+			else if (mPileType == RIGHT) {
 				if (last == null) c.drawBitmap(h, pos.left, pos.top, null);
 				else c.drawBitmap(h, pos.left+(cardHeight/4), pos.top, null);
 			}
 
-			else if (rot == DOWN) {
+			else if (mPileType == DOWN) {
 				if (last == null) c.drawBitmap(h, pos.left, pos.top, null);
 				else c.drawBitmap(h, pos.left, pos.top+(cardHeight/4), null);
 			}
 		} else {
 			// Draw corner
-			if (rot == UP_LEFT) {
+			if (mPileType == UP_LEFT) {
 				if (last == null) c.drawBitmap(h, pos.left, pos.top, null);
 				else c.drawBitmap(h, pos.left-(cardHeight/6), pos.top-(cardHeight/6), null);
 			}
 
-			else if (rot == UP_RIGHT) {
+			else if (mPileType == UP_RIGHT) {
 				if (last == null) c.drawBitmap(h, pos.left, pos.top, null);
 				else c.drawBitmap(h, pos.left+(cardHeight/6), pos.top-(cardHeight/6), null);
 			}
 
-			else if (rot == DOWN_RIGHT) {
+			else if (mPileType == DOWN_RIGHT) {
 				if (last == null) c.drawBitmap(h, pos.left, pos.top, null);
 				else c.drawBitmap(h, pos.left+(cardHeight/6), pos.top+(cardHeight/6), null);
 			}
 
-			else if (rot == DOWN_LEFT) {
+			else if (mPileType == DOWN_LEFT) {
 				if (last == null) c.drawBitmap(h, pos.left, pos.top, null);
 				else c.drawBitmap(h, pos.left-(cardHeight/6), pos.top+(cardHeight/6), null);
 			}
@@ -274,7 +274,7 @@ public class Pile implements Serializable {
 		else last = c;
 	}
 
-	private boolean isCorner() {return (rot > 3);}
+	private boolean isCorner() {return (mPileType > 3);}
 
 	public void clearCorner() {
 		if (isCorner() && first != null && last != null && first.getValue() == 13 && last.getValue() == 1) {

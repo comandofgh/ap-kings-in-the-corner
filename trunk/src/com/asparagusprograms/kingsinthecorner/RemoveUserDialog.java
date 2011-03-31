@@ -1,5 +1,5 @@
 /**
- * Copyright 2010 Trevor Boyce
+ * Copyright 2010,2011 Trevor Boyce
  * 
  * This file is part of Kings in the Corner.
  *
@@ -19,6 +19,9 @@
 
 package com.asparagusprograms.kingsinthecorner;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,44 +30,52 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RemoveUserDialog extends Activity {
-	private String[] users;
-	
+	private StatsManager mStatsManager;
+
+	/** Called when the activity is first created */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.remove_user);
 		LinearLayout layout = (LinearLayout)this.findViewById(R.id.LinearLayoutRemoveUser);
-		users = fileList();
-		int count = 0;
-		for (String name : users) {
-			if (!name.contains(".")) {
-				TextView t = new TextView(this);
-				t.setText(name);
-				t.setTextSize(24);
-				t.setId(count);
-				t.setClickable(true);
-				t.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						deleteFile(users[v.getId()]);
-						deleteFile(users[v.getId()] + "_save.dat");
+		
+		mStatsManager = new StatsManager(this);	
+		ArrayList<PlayerStats> players = mStatsManager.getPlayerList();
+		
+		for (PlayerStats p : players) {
+			TextView t = new TextView(this);
+			t.setText(p.getName());
+			t.setTextSize(24);
+			t.setClickable(true);
+			t.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					synchronized(Main.sDataLock) {
+						String name = ((TextView)v).getText().toString();
+						
+						try {
+							mStatsManager.removePlayer(name);
+						} catch (IOException e) {}
+						
 						SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		    	    	  if (prefs.getString(getResources().getString(R.string.pref_key_username), getResources().getString(R.string.username_none)).equals(users[v.getId()])) {
-		    	    		  prefs.edit().putString(getResources().getString(R.string.pref_key_username), getResources().getString(R.string.username_none)).commit();
-		    	    	  }
-						finish();
+						if (prefs.getString(getResources().getString(R.string.pref_key_username), getResources().getString(R.string.username_none)).equals(name)) {
+							prefs.edit().putString(getResources().getString(R.string.pref_key_username), getResources().getString(R.string.username_none)).commit();
+						}
+						String format = getResources().getString(R.string.toast_usernameDeleted);
+						String string = String.format(format, name);
+						Toast.makeText(getApplicationContext(), string, Toast.LENGTH_SHORT).show();
 					}
-				});
-				
-				TextView blank = new TextView(this);
-				blank.setHeight(24);
-				
-				layout.addView(t);
-				layout.addView(blank);
-				count++;
-			}
+					finish();
+				}
+			});
+			TextView blank = new TextView(this);
+			blank.setHeight(24);
+
+			layout.addView(t);
+			layout.addView(blank);
 		}
 	}
 }

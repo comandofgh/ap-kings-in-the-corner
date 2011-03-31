@@ -1,5 +1,5 @@
 /**
- * Copyright 2010 Trevor Boyce
+ * Copyright 2010,2011 Trevor Boyce
  * 
  * This file is part of Kings in the Corner.
  *
@@ -22,15 +22,11 @@ package com.asparagusprograms.kingsinthecorner;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class SelectPlayers extends Activity implements OnClickListener {
-
-	/** Called when the activity is first created */
+public class SelectPlayersActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,10 +39,9 @@ public class SelectPlayers extends Activity implements OnClickListener {
 		fourPlayers.setOnClickListener(this);
 	}
 
-	/** Handles button clicks */
 	@Override
 	public void onClick(View v) {
-		Intent newGameIntent = new Intent(this, Game.class);
+		Intent newGameIntent = new Intent(this, GameActivity.class);
 		switch(v.getId()) {
 			case R.id.TwoPlayers:
 				newGameIntent.putExtra(getResources().getString(R.string.extras_players), 2);
@@ -63,34 +58,4 @@ public class SelectPlayers extends Activity implements OnClickListener {
 		startActivity(newGameIntent);
 		finish();
 	}
-	
-	/** Creates the menu items */
-    @Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-    	menu.clear();
-    	menu.add(0, Main.MENU_PREFS, 0, getResources().getString(R.string.menu_prefs)).setIcon(R.drawable.ic_menu_preferences);
-    	menu.add(0, Main.MENU_HELP, 0, getResources().getString(R.string.menu_help)).setIcon(R.drawable.ic_menu_help);
-    	menu.add(0, Main.MENU_ABOUT, 0, getResources().getString(R.string.menu_about)).setIcon(R.drawable.ic_menu_about);
-        return true;
-    }
-    
-    /** Handles item selections */
-    @Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case Main.MENU_ABOUT:
-        	Intent aboutIntent = new Intent(this, About.class);
-        	startActivity(aboutIntent);
-            return true;
-        case Main.MENU_HELP:
-        	Intent helpIntent = new Intent(this, Help.class);
-        	startActivity(helpIntent);
-        	return true;
-		case Main.MENU_PREFS:
-			Intent prefsIntent = new Intent(this, Preferences.class);
-			startActivity(prefsIntent);
-			return true;
-        }
-        return false;
-    }
 }

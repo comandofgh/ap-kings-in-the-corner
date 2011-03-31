@@ -22,10 +22,12 @@ import java.io.Serializable;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 
-/*
-   An object of class card represents one of the 52 cards in a
+/**
+   An object representing one of the 52 cards in a
    standard deck of playing cards.  Each card has a suit and
    a value.
 */
@@ -33,90 +35,105 @@ public class Card implements Serializable {
 
 	private static final long serialVersionUID = 8373398048173195242L;
 
-	public final static int SPADES = 0,       // Codes for the 4 suits.
+	/** Code for one of the four suits. */
+	public final static int SPADES = 0,
                             HEARTS = 1,
                             DIAMONDS = 2,
                             CLUBS = 3;
-                            
+                           
+	/** 
+	 * Code for a non-numeric card. Numeric 
+	 * cards have their value for their code.
+	 */
     public final static int ACE = 1,          // Codes for the non-numeric cards.
                             JACK = 11,        //   Cards 2 through 10 have their 
                             QUEEN = 12,       //   numerical values for their codes.
                             KING = 13;
-    
-    public final static int NORMAL = 0,						// Values for setRotate()
-    						SIDE_LEFT_RIGHT = 1,
-    						CORNER_UP_LEFT_DOWN_RIGHT = 2,
-    						CORNER_UP_RIGHT_DOWN_LEFT = 3;
-                            
-    private final int suit;   // The suit of this card, one of the constants
+              
+    /** 
+     * The suit of this card. Can be one of {@link #SPADES},
+     * {@link #HEARTS}, {@link #DIAMONDS}, or {@link #CLUBS}.
+     */
+    private final int mSuit;   // The suit of this card, one of the constants
                               //    SPADES, HEARTS, DIAMONDS, CLUBS.
-                              
-    private final int value;  // The value of this card, from 1 to 11.
+                
+    /** The value of this card. An integer from 1 to 13 */
+    private final int mValue;
     
-    private int xpos, ypos;	  // The x and y coords of the cards current position.
-    private int xmax;		  // The maximum x coord visible when the card is in a hand
-    						  // unless it is the last card in the hand.
+    /** The current x-coordinate for this card when drawn to a canvas. */
+    private transient int mXPos;
+    /** The current y-coordinate for this card when drawn to a canvas. */
+    private transient int mYPos;
     
-    private transient int rotation;
-    private transient int corner_rotation; // Same values as above
+    /** 
+     * The rotation of this card from its normal upright position
+     * when drawn to a canvas.
+     */
+    private transient int mCurrentRotation = 0;
     
-    private transient Bitmap image;			// Normal rotation image
-    private transient Bitmap corner;		// Corner images
-                             
-    public Card(int theValue, int theSuit) {
-            // Construct a card with the specified value and suit.
-            // Value must be between 1 and 13.  Suit must be between
-            // 0 and 3.  If the parameters are outside these ranges,
-            // the constructed card object will be invalid.
-        value = theValue;
-        suit = theSuit;
-        rotation = NORMAL;
+    /** The image for this card to drawn to a canvas. */
+    private transient Bitmap image;
+    
+    /**
+     * Construct a card with the specified value and suit.
+     * If the parameters are outside their acceptable ranges,
+     * the constructed card object will be invalid.
+     * @param value The card's value. Must be between 1 and 13.
+     * @param suit The card's suit. Must be between 0 and 3.
+     */
+    public Card(int value, int suit) {
+        mValue = value;
+        mSuit = suit;
     }
     
-    public void setX(int x) {
-    	// Set the current x coord.
-    	xpos = x;
+    /**
+     * Sets the x- and y-coordinate for drawing this card to a canvas.
+     * @param x The x-coordinate for the left side of this card.
+     * @param y The y-coordinate for the top of this card.
+     */
+    public void setPos(int x, int y) {
+    	mXPos = x;
+    	mYPos = y;
     }
     
-    public void setY(int y) {
-    	// Set the current y coord.
-    	ypos = y;
-    }
-    
-    public void setXMax(int xm) {
-    	// Set the miximum x coord.
-    	xmax = xm;
-    }
-    
-    public int getXMax() {
-    	// Gets the maximum x coord.
-    	return xmax;
-    }
-    
+    /**
+     * Gets the x-coordinate of this card.
+     * @return The x-coordinate for the left side of this card.
+     */
     public int getX() {
-    	// Return the int giving the current x coord.
-    	return xpos;
+    	return mXPos;
     }
     
+    /**
+     * Gets the y-coordinate of this card.
+     * @return The y-coordinate for the top of this card.
+     */
     public int getY() {
-    	// Return the int giving the current y coord.
-    	return ypos;
+    	return mYPos;
     }
         
+    /**
+     * Gets the suit of this card as an integer.
+     * @return The suit of this card represented as an integer.
+     */
     public int getSuit() {
-            // Return the int that codes for this card's suit.
-        return suit;
+        return mSuit;
     }
     
+    /**
+     * Gets the value of this card as an integer.
+     * @return The value of this card represented as an integer.
+     */
     public int getValue() {
-            // Return the int that codes for this card's value.
-        return value;
+        return mValue;
     }
     
+    /**
+     * Gets the suit of this card as a string.
+     * @return A string representation for the suit of this card.
+     */
     public String getSuitAsString() {
-            // Return a String representing the card's suit.
-            // (If the card's suit is invalid, "??" is returned.)
-        switch ( suit ) {
+        switch ( mSuit ) {
            case SPADES:   return "Spades";
            case HEARTS:   return "Hearts";
            case DIAMONDS: return "Diamonds";
@@ -125,10 +142,12 @@ public class Card implements Serializable {
         }
     }
     
+    /**
+     * Gets the value of this card as a string.
+     * @return A string representation for the value of this card.
+     */
     public String getValueAsString() {
-            // Return a String representing the card's value.
-            // If the card's value is invalid, "??" is returned.
-        switch ( value ) {
+        switch ( mValue ) {
            case 1:   return "Ace";
            case 2:   return "2";
            case 3:   return "3";
@@ -148,34 +167,42 @@ public class Card implements Serializable {
     
     @Override
 	public String toString() {
-           // Return a String representation of this card, such as
-           // "10 of Hearts" or "Queen of Spades".
         return getValueAsString() + " of " + getSuitAsString();
     }
     
+    /**
+     * Determines if this card and another card are the same.
+     * @param c The card to compare to this card.
+     * @return True if this card and the given card have
+     * 			the same suit and value, false otherwise.
+     */
     public boolean isSame(Card c) {
     	if (c == null) {
     		return false;
-    	} else if (this.suit == c.suit && this.value == c.value) {
+    	} else if (this.mSuit == c.mSuit && this.mValue == c.mValue) {
     		return true;
     	} else {
     		return false;
     	}
     }
 
+    /**
+     * Determines if this card covers a given card.
+     * @param c The card to check if this card covers.
+     * @return True if this card covers the given card, false otherwise.
+     */
     public boolean covers(Card c) {
-    	// Return a boolean indicating whether this card covers the parameter card.
-    	if (c == null || this == null || this.suit == 4) {
+    	if (c == null || this == null || this.mSuit == 4) {
     		return false;
-    	} else if (this.suit == 0 || this.suit == 3) {
-    		if (c.suit == 1 || c.suit == 2) {
-    			if (this.value+1 == c.value) {
+    	} else if (this.mSuit == 0 || this.mSuit == 3) {
+    		if (c.mSuit == 1 || c.mSuit == 2) {
+    			if (this.mValue+1 == c.mValue) {
     				return true;
     			}
     		}
     	} else {
-    		if (c.suit == 0 || c.suit == 3) {
-    			if (this.value+1 == c.value) {
+    		if (c.mSuit == 0 || c.mSuit == 3) {
+    			if (this.mValue+1 == c.mValue) {
     				return true;
     			}
     		}
@@ -183,85 +210,99 @@ public class Card implements Serializable {
     	return false;
     }
     
+    /**
+     * Gets the image associated with this card.
+     * @return The image associated with this card.
+     */
     public Bitmap getImage() {
-    	if (rotation == CORNER_UP_LEFT_DOWN_RIGHT || rotation == CORNER_UP_RIGHT_DOWN_LEFT) {
-    		return corner;
-    	}
     	return image;
     }
     
-    public void setRotate(int value) {
-    	if (rotation == value) return;
-    	switch (value) {
-    	case NORMAL:
-    		if (rotation == SIDE_LEFT_RIGHT) {
-    			Matrix rotate90 = new Matrix();
-    			rotate90.postRotate(90);
-    			image = Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), rotate90, true);
-    		}
-    		if (corner != null) {
-    		//	corner.recycle();
-    		//	corner = null;
-    		}
-    		rotation = NORMAL;
-    		break;
-    	case SIDE_LEFT_RIGHT:
-    		if (rotation != SIDE_LEFT_RIGHT) {
-    			Matrix rotate90 = new Matrix();
-    			rotate90.postRotate(90);
-    			image = Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), rotate90, true);
-    			rotation = SIDE_LEFT_RIGHT;
-    		}
-    		break;
-    	case CORNER_UP_LEFT_DOWN_RIGHT:
-    		if (corner == null) {
-    			if (rotation != NORMAL) {
-    				setRotate(NORMAL);
-    			}
-    			Matrix rotateUp45 = new Matrix();
-    			rotateUp45.postRotate(315);
-    			corner = Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), rotateUp45, true);
-    		//	image.recycle();
-    		} else if (corner_rotation == CORNER_UP_RIGHT_DOWN_LEFT) {
-    			Matrix rotate90 = new Matrix();
-    			rotate90.postRotate(90);
-    			corner = Bitmap.createBitmap(corner, 0, 0, corner.getWidth(), corner.getHeight(), rotate90, true);
-    		}
-			rotation = CORNER_UP_LEFT_DOWN_RIGHT;
-			corner_rotation = CORNER_UP_LEFT_DOWN_RIGHT;
-    		break;
-    	case CORNER_UP_RIGHT_DOWN_LEFT:
-    		if (corner == null) {
-    			if (rotation != NORMAL) {
-    				setRotate(NORMAL);
-    			}
-    			Matrix rotateDown45 = new Matrix();
-    			rotateDown45.postRotate(45);
-    			corner = Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), rotateDown45, true);
-    		//	image.recycle();
-    		} else if (corner_rotation == CORNER_UP_LEFT_DOWN_RIGHT) {
-    			Matrix rotate90 = new Matrix();
-    			rotate90.postRotate(90);
-    			corner = Bitmap.createBitmap(corner, 0, 0, corner.getWidth(), corner.getHeight(), rotate90, true);
-    		}
-    		rotation = CORNER_UP_RIGHT_DOWN_LEFT;
-    		corner_rotation = CORNER_UP_RIGHT_DOWN_LEFT;
-    		break;
-    	}
+    /**
+     * Gets the width of this card's image.
+     * @return The width of this card's image.
+     * 			If no image is set, returns 0.
+     */
+    public int getWidth() {
+    	if (image == null) return 0;
+    	
+    	return image.getWidth();
     }
     
+    /**
+     * Gets the height of this card's image.
+     * @return The height of this card's image.
+     * 			If no image is set, returns 0.
+     */
+    public int getHeight() {
+    	if (image == null) return 0;
+    	
+    	return image.getHeight();
+    }
+    
+    /**
+     * Rotates this card's image.
+     * @param degrees The number of degrees to rotate this card's image.
+     * @param context The context used to get image resources if needed.
+     * @param style The style of card to use if needed.
+     */
+    public void setRotate(int degrees, Context context, String style) {
+    	// Make sure there is an image and it actually needs rotated
+    	if (image == null || mCurrentRotation == degrees) return;
+    	
+    	// Reset the image to 0 rotation
+    	if (mCurrentRotation != 0) {
+    		setImage(context, style);
+    	}
+    	
+    	// Rotate the image to the given degrees
+    	if (degrees != 0) {
+    		Matrix m = new Matrix();
+        	m.postRotate(degrees);
+    		image = Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), m, true);
+    	}
+    	mCurrentRotation = degrees;
+    }
+    
+    /**
+     * Sets the image for this card.
+     * @param context The context used to get image resources.
+     * @param style The style of card to use.
+     */
     public void setImage(Context context, String style) {
     	if (style != null && style.equals("classic")) {
     		setImageClassic(context);
     	} else {
-    		setImageNew(context);
+    		setImageSimple(context);
     	}
+    	
+    	mCurrentRotation = 0;
     }
     
-    public void setImageNew(Context context) {
-		switch (suit) {
+    /**
+     * Draws this card a canvas.
+     * @param c The canvas to draw this card to.
+     * @param paint The paint to use when drawing.
+     * @param cardBack A card back image to draw if this card
+     * 					is not face up. If this is null, the card
+     * 					will be drawn face up.
+     */
+    public void draw(Canvas c, Paint paint, Bitmap cardBack) {
+    	if (cardBack == null)
+    		c.drawBitmap(image, mXPos, mYPos, paint);
+    	
+    	else
+    		c.drawBitmap(cardBack, mXPos, mYPos, paint);
+    }
+    
+    /**
+     * Sets this card's image to the Simple card style.
+     * @param context The context used to get image resources.
+     */
+    private void setImageSimple(Context context) {
+		switch (mSuit) {
 		case Card.CLUBS:    
-			switch (value) {
+			switch (mValue) {
 			case 1:
 				image = BitmapFactory.decodeResource(context.getResources(), R.drawable.c1);
 				break;
@@ -304,7 +345,7 @@ public class Card implements Serializable {
 			}
 			break;
 		case Card.DIAMONDS: 
-			switch (value) {
+			switch (mValue) {
 			case 1:
 				image = BitmapFactory.decodeResource(context.getResources(), R.drawable.d1);
 				break;
@@ -347,7 +388,7 @@ public class Card implements Serializable {
 			}
 			break;
 		case Card.HEARTS:   
-			switch (value) {
+			switch (mValue) {
 			case 1:
 				image = BitmapFactory.decodeResource(context.getResources(), R.drawable.h1);
 				break;
@@ -390,7 +431,7 @@ public class Card implements Serializable {
 			}
 			break;
 		case Card.SPADES:
-			switch (value) {
+			switch (mValue) {
 			case 1:
 				image = BitmapFactory.decodeResource(context.getResources(), R.drawable.s1);
 				break;
@@ -438,10 +479,14 @@ public class Card implements Serializable {
 		}
     }
     
-    public void setImageClassic(Context context) {
-		switch (suit) {
+    /**
+     * Sets this card's image to the Classic card style.
+     * @param context The context used to get image resources.
+     */
+    private void setImageClassic(Context context) {
+		switch (mSuit) {
 		case Card.CLUBS:    
-			switch (value) {
+			switch (mValue) {
 			case 1:
 				image = BitmapFactory.decodeResource(context.getResources(), R.drawable.c1c);
 				break;
@@ -484,7 +529,7 @@ public class Card implements Serializable {
 			}
 			break;
 		case Card.DIAMONDS: 
-			switch (value) {
+			switch (mValue) {
 			case 1:
 				image = BitmapFactory.decodeResource(context.getResources(), R.drawable.d1c);
 				break;
@@ -527,7 +572,7 @@ public class Card implements Serializable {
 			}
 			break;
 		case Card.HEARTS:   
-			switch (value) {
+			switch (mValue) {
 			case 1:
 				image = BitmapFactory.decodeResource(context.getResources(), R.drawable.h1c);
 				break;
@@ -570,7 +615,7 @@ public class Card implements Serializable {
 			}
 			break;
 		case Card.SPADES:
-			switch (value) {
+			switch (mValue) {
 			case 1:
 				image = BitmapFactory.decodeResource(context.getResources(), R.drawable.s1c);
 				break;
@@ -616,5 +661,5 @@ public class Card implements Serializable {
 			image = BitmapFactory.decodeResource(context.getResources(), R.drawable.joker);
 			break;
 		}
-    }
+    }    
 }
