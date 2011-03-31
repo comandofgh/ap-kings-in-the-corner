@@ -4,6 +4,7 @@
 	<!-- Application Info -->
 	<string name="app_name">Kings in the Corner</string>
 	<string name="copyright">© 2010-2011 Asparagus Programs</string>
+	<string name="backup_agent">KitCBackupAgent</string>
 	<string name="app_version">1.5.0</string>
 	
 	<!-- Buttons -->
@@ -16,6 +17,10 @@
 	<string name="button_multiplayer">Multi-player</string>
 	<string name="button_stats">Statistics</string>
 	<string name="button_prefs">Settings</string>
+	<string name="button_help">Help</string>
+	<string name="button_about">About</string>
+	<string name="button_more">More...</string>
+	<string name="button_back">Back...</string>
 	<string name="button_2players">2 Players</string>
 	<string name="button_3players">3 Players</string>
 	<string name="button_4players">4 Players</string>
@@ -39,6 +44,7 @@
 	<string name="menu_cheats">Cheats</string>
 	<string name="menu_win">I Win</string>
 	<string name="menu_trash">Trash Opponent</string>
+	<string name="menu_showComputer">Toggle Computer Hand</string>
 	
 	<!-- Dialog text -->
 	<string name="diag_playerTurn">Player %1$d\'s turn.</string>
@@ -55,6 +61,7 @@
 	<string name="diag_noInternet">No internet access available. Would you like to view the slightly outdated offline help?</string>
 	<string name="diag_oldSaves">Old saves are incompatible with this version of the game and have been removed.</string>
 	<string name="diag_aboutCards">Don\'t like the new cards?\n\nChange them in the settings!</string>
+	<string name="diag_oldStats">An error occurred trying to format your stats to the new format. You can recover your old stats by downgrading to an older version; otherwise, you will need to create a new user to keep track of stats.</string>
 	
 	<!-- Dialog title -->
 	<string name="dialog_title_selectUser">Select User</string>
@@ -94,7 +101,7 @@
 			<string name="pref_summary_noUserWarning">Shows a warning before starting a game when no user is selected</string>
 		
 	<string name="pref_key_gameplaySettings">GameplaySettings</string>
-	<string name="pref_title_gameplaySettings">Gameplay Settings</string>
+	<string name="pref_title_gameplaySettings">Gameplay</string>
 	<string name="pref_summary_gameplaySettings">Difficulty, play speed, autosave, etc.</string>
 	
 		<string name="pref_key_computerDelay">ComputerDelay</string>
@@ -120,7 +127,7 @@
 		
 		<string name="pref_key_cheatsAllString">cheats.enabled</string>		
 		<string name="pref_key_cheatScreen">CheatScreen</string>
-		<string name="pref_title_cheatScreen">Cheat Codes</string>
+		<string name="pref_title_cheatScreen">Cheats</string>
 		<string name="pref_summary_cheatScreen">Enter codes, enable/diasble cheats</string>
 		
 			<string name="pref_key_enterCode">EnterCode</string>
@@ -153,18 +160,39 @@
 				<string name="pref_summary_disableCheats">Click to remove all cheats</string>
 		
 	<string name="pref_key_displaySettings">DisplaySettings</string>
-	<string name="pref_title_displaySettings">Display Settings</string>
+	<string name="pref_title_displaySettings">Display</string>
 	<string name="pref_summary_displaySettings">Card style, draw pile count, highlight cards</string>
 	
-		<string name="pref_key_cardImage">CardImage</string>
-		<string name="pref_title_cardImage">Card Style</string>
-		<string name="pref_summary_cardImage">If you are currently in a game, you will need to return to the main menu for changes to take effect</string>
-		<string name="cardImage_default">classic</string>
-		<string name="pref_key_cardBack">CardBack</string>
-		<string name="pref_title_cardBack">Card Back Style</string>
-		<string name="pref_summary_cardBack">Set the image on the back of the cards</string>
-		<string name="cardBack_default">classic</string>
-		<string name="pref_key_aboutCards">AboutCards</string>
+		<string name="pref_key_imageSettings">ImageSettings</string>
+		<string name="pref_title_imageSettings">Image Settings</string>
+		<string name="pref_summary_imageSettings">Card style/image, table image</string>
+	
+			<string name="pref_key_cardImage">CardImage</string>
+			<string name="pref_title_cardImage">Card Style</string>
+			<string name="pref_summary_cardImage">Set the style of cards to use</string>
+			<string name="cardImage_default">classic</string>
+			
+			<string name="pref_key_cardBack">CardBack</string>
+			<string name="pref_title_cardBack">Card Back Style</string>
+			<string name="pref_summary_cardBack">Set the image on the back of the cards</string>
+			<string name="cardBack_default">classic</string>
+			
+			<string name="pref_key_tableImage">TableImage</string>
+			<string name="pref_title_tableImage">Table Image</string>
+			<string name="pref_summary_tableImage">Set the image of the table during games</string>
+			<string name="tableImage_default">wood</string>
+			
+		<string name="pref_key_colorSettings">ColorSettings</string>
+		<string name="pref_title_colorSettings">Color Settings</string>
+		<string name="pref_summary_colorSettings">Draw pile count color, player scores color</string>
+			
+			<string name="pref_key_drawPileCountColor">DrawPileCountColor</string>
+			<string name="pref_title_drawPileCountColor">Draw Pile Count Color</string>
+			<string name="pref_summary_drawPileCountColor">The color to use for the draw pile count</string>
+			
+			<string name="pref_key_scoreColor">ScoreColor</string>
+			<string name="pref_title_scoreColor">Player Score Color</string>
+			<string name="pref_summary_scoreColor">The color to use for the scores in multi-player</string>
 		
 		<string name="pref_key_drawPileCount">DrawPileCount</string>
 		<string name="pref_title_drawPileCount">Draw Pile Count</string>
@@ -174,6 +202,23 @@
 		<string name="pref_title_hightlightCards">Highlight Cards</string>
 		<string name="pref_summary_highlightCards">Highlights a card when a playable card is dragged over it</string>
 		
+		<string name="pref_key_clearFullCorners">ClearCorners</string>
+		<string name="pref_title_clearFullCorners">Clear Corners</string>
+		<string name="pref_summary_clearFullCorners">Removes the corner piles when they are full</string>
+		
+	<string name ="pref_key_advancedSettings">AdvancedSettings</string>
+	<string name ="pref_title_advancedSettings">Advanced Settings</string>
+	<string name ="pref_summary_advancedSettings">Backup Manager</string>
+	
+		<string name ="pref_key_allowBackupManager">AllowBackupManager</string>
+		<string name ="pref_title_allowBackupManager">Use Backup Manager</string>
+		<string name ="pref_summary_allowBackupManager">Syncs stats and settings with your Google account</string>
+		
+		<string name ="pref_key_allowBackupManagerInfo">AllowBackupManagerInfo</string>
+		<string name ="pref_title_allowBackupManagerInfo">WARNING!!!</string>
+		<string name ="pref_summary_allowBackupManagerInfo">WARNING: If you enable this and a backup is performed, that backup may be restored on a fresh install even if this option is turned off</string>
+		<string name ="pref_summary_allowBackupManagerInfoDisabled">Requires Android 2.2 or higher</string>
+	
 	<string name="pref_key_applicationInformation">ApplicationInformation</string>
 	<string name="pref_title_applicationInformation">Application Information</string>
 	
@@ -222,10 +267,10 @@
 	<!-- Stats screen -->
 	<string name="stats_title">Statistics</string>
 	<string name="stats_games">Total Games: %1$d</string>
-	<string name="stats_won">Games Won: %1$d\t\t(%2$s%%)</string>
-	<string name="stats_lost">Games Lost: %1$d\t\t(%2$s%%)</string>
-	<string name="stats_cstreak">Current Win Streak: %1$d</string>
-	<string name="stats_lstreak">Longest Win Streak: %1$d</string>
+	<string name="stats_won">- Games Won: %1$d\t\t(%2$s%%)</string>
+	<string name="stats_lost">- Games Lost: %1$d\t\t(%2$s%%)</string>
+	<string name="stats_cstreak">- Current Win Streak: %1$d</string>
+	<string name="stats_lstreak">- Longest Win Streak: %1$d</string>
 	
 	<!-- Help screen -->
 	<string name="help_title_gamePlay">Game Play</string>
@@ -240,12 +285,12 @@
 	<string name="help_end">***</string>
 	
 	<!-- About screen -->
-	<string name="about_title_about">About the Game:</string>
+	<string name="about_title_about">About:</string>
 	<string name="about_summary_about">Kings in the Corner is a multi-player card game where players try to be the first to get rid of all their cards. For more information on how to play check out the Help section.</string>
 	<string name="about_title_legal">Legal Stuff:</string>
 	<string name="about_summary_legal">Copyright ©2010 Asparagus Programs\n\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program. If not, see\n&lt;http://www.gnu.org/licenses/&gt;.</string>
 	<string name="about_title_credits">Credits:</string>
-	<string name="about_summary_credits">Title texts were made using cooltext.com\n\nThe classic card style was developed for the Gnome desktop project and was obtained from\n &lt;http://math.hws.edu/javanotes/c12/cards.png&gt;</string>
+	<string name="about_summary_credits">The colored card backs were created by Patrick B.\n\nTitle texts were made using cooltext.com\n\nThe classic card style was developed for the Gnome desktop project and was obtained from\n &lt;http://math.hws.edu/javanotes/c12/cards.png&gt;</string>
 	<string name="about_title_contact">Contact Information:</string>
 	<string name="about_summary_contact">&lt;asparagus.programs@gmail.com&gt;</string>
 	

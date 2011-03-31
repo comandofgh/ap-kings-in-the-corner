@@ -19,23 +19,34 @@ package com.asparagusprograms.kingsinthecorner;
 
 import android.content.Context;
 
-/* 
-    An object of type Deck represents an ordinary deck of 52 playing cards.
-    The deck can be shuffled, and cards can be dealt from the deck.
- */
-
+/** An object representing an ordinary deck of 52 playing cards. */
 public class Deck {
 
-	private Card[] deck;   // An array of 52 Cards, representing the deck.
-	private int cardsUsed; // How many cards have been dealt from the deck.
-	private Context context;
-	private String cardStyle;
+	/** An {@code array} containing the 52 cards in the deck. */
+	private Card[] deck;
+	
+	/** The number of cards that have been dealt from the deck. */
+	private int mCardsUsed;
+	
+	/** The {@code context} associated with this deck's resources. */
+	private Context mContext;
+	
+	/** 
+	 * The style of cards to use for this deck.
+	 * @see {@link #setCardStyle(String)}.
+	 */
+	private String mCardStyle;
 
-	public Deck(Context c, String style) {
+	/**
+	 * Constructs a new deck object.
+	 * @param context The context associated with this deck's resources.
+	 * @param style The style of cards to use for this deck.
+	 */
+	public Deck(Context context, String style) {
 		// Create an unshuffled deck of cards.
-		context = c;
-		if (style == null || style == "") cardStyle = "classic";
-		else cardStyle = style;
+		mContext = context;
+		if (style == null || style == "") mCardStyle = "classic";
+		else mCardStyle = style;
 		
 		deck = new Card[52];
 		int cardCt = 0; // How many cards have been created so far.
@@ -45,12 +56,14 @@ public class Deck {
 				cardCt++;
 			} 
 		}
-		cardsUsed = 0;
+		mCardsUsed = 0;
 	}
 
+	/**
+	 * Put all the cards back into the deck and shuffle them into
+	 * a random order.
+	 */
 	public void shuffle() {
-		// Put all the used cards back into the deck, and shuffle it into
-		// a random order.
 		Card temp;
 		for ( int i = 51; i > 0; i-- ) {
 			int rand = (int)(Math.random()*(i+1));
@@ -58,36 +71,67 @@ public class Deck {
 			deck[i] = deck[rand];
 			deck[rand] = temp;
 		}
-		cardsUsed = 0;
+		mCardsUsed = 0;
 	}
 
+	/**
+	 * Getst he number of cards remaining in the deck.
+	 * @return The number of cards left in the deck.
+	 */
 	public int cardsLeft() {
-		// As cards are dealt from the deck, the number of cards left
-		// decreases.  This function returns the number of cards that
-		// are still left in the deck.
-		return 52 - cardsUsed;
+		return 52 - mCardsUsed;
 	}
 
+	/**
+	 * Deals the top card from the deck.
+	 * @return The card dealt from the deck.
+	 */
 	public Card dealCard() {
 		// Deals one card from the deck and returns it.
-		if (cardsUsed == 52)
+		if (mCardsUsed == 52)
 			shuffle();
-		cardsUsed++;
-		Card c = deck[cardsUsed - 1];
-		c.setImage(context, cardStyle);
-		deck[cardsUsed - 1] = null;
+		mCardsUsed++;
+		Card c = deck[mCardsUsed - 1];
+		c.setImage(mContext, mCardStyle);
+		deck[mCardsUsed - 1] = null;
 		return c;
 	}
 
-	public Card cardAt(int x) {
-		return deck[x];
+	/**
+	 * Gets the {@link Card} at a given location in the deck.
+	 * @param index The index into this deck to get the card.
+	 * @return The card at the given index. If the index
+	 * 			is not within the bounds of the deck, null
+	 * 			is returned.
+	 */
+	public Card cardAt(int index) {
+		if (index < 0 || index > deck.length) return null;
+		
+		return deck[index];
 	}
 
-	public void setCardAt(int x, Card c) {
-		deck[x] = c;
+	/**
+	 * Sets the {@link Card} in this deck at a given index.
+	 * @param card The card to place in this deck.
+	 * @param index The index to place the card at.
+	 */
+	public void setCardAt(Card card, int index) {
+		deck[index] = card;
 	}
 
-	public void setCardsUsed(int x) {
-		cardsUsed = x;
+	/**
+	 * Sets the number of cards that have been dealt from this deck.
+	 * @param numCardsUsed The number of cards used.
+	 */
+	public void setCardsUsed(int numCardsUsed) {
+		mCardsUsed = numCardsUsed;
+	}
+	
+	/**
+	 * Sets the style of card to use for this deck.
+	 * @param style The style of cards to use.
+	 */
+	public void setCardStyle(String style) {
+		mCardStyle = style;
 	}
 }

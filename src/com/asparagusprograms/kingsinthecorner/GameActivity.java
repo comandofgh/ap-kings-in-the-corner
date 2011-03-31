@@ -1,5 +1,5 @@
 /**
- * Copyright 2010 Trevor Boyce
+ * Copyright 2010,2011 Trevor Boyce
  * 
  * This file is part of Kings in the Corner.
  *
@@ -37,13 +37,39 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.widget.Toast;
 
-public class Game extends Activity implements Observer {	
-	// Global variables
+/**
+ * An activity for setting up a game. This activity gets the view used
+ * for the table and creates a game engine with the required information
+ * to set up a new game or restore a saved game. It also handles button
+ * presses, menus, dialogs, and pausing, resuming, starting, and ending games.
+ */
+public class GameActivity extends Activity implements Observer {
+	/** The {@link GameEngine} used for the game's functions and drawing. */
 	private GameEngine mGameEngine;
+	
+	/** True if this is the first turn for the human player in a single player game. */
 	private boolean mFirstYourTurn;
+	
+	/** 
+	 * True if one or more cheats are enabled, false otherwise.
+	 * @see {@link #mCheatsWin}
+	 * @see {@link #mCheatsTrash}
+	 * @see	{@link #mCheatsShowComputer}
+	 */ 
+	private boolean mCheatsEnabled;
+	/** True if the auto win cheat is unlocked and enabled. */
+	private boolean mCheatsWin;
+	/** True if the trash opponent cheat is unlocked and enabled. */
+	private boolean mCheatsTrash;
+	/** True if the show computer hand cheat is unlocked and enabled. */
+	private boolean mCheatsShowComputer;
+	
+	/** The number of players for the game. */
+	private int mNumPlayers;
+	
+	/** The default shared preferences. */
 	private SharedPreferences mPrefs;
 	
-	/** Called when the activity is first created **/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,7 +81,8 @@ public class Game extends Activity implements Observer {
 		CardTableView table = (CardTableView)this.findViewById(R.id.Table);
 		table.setFocusableInTouchMode(true);
 		// Creates the game engine
-		mGameEngine = new GameEngine(this, getIntent().getExtras().getInt(getResources().getString(R.string.extras_players)), table);
+		mNumPlayers = getIntent().getExtras().getInt(getResources().getString(R.string.extras_players));
+		mGameEngine = new GameEngine(this, mNumPlayers, table);
 		mGameEngine.addObserver(this);
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -75,38 +102,46 @@ public class Game extends Activity implements Observer {
 		mGameEngine.inGame(true);
 	}
 	
-	/** Called when the activity is being resumed or after onCreate **/
 	@Override
 	protected void onResume() {
 		super.onResume();
 		// Update user preferences
+		mCheatsWin = (mPrefs.getBoolean(getResources().getString(R.string.pref_key_cheatsWinUnlocked), false) &&
+						mPrefs.getBoolean(getResources().getString(R.string.pref_key_cheatsWin), false));
+		mCheatsTrash = (mPrefs.getBoolean(getResources().getString(R.string.pref_key_cheatsTrashUnlocked), false) &&
+				mPrefs.getBoolean(getResources().getString(R.string.pref_key_cheatsTrash), false));
+		mCheatsShowComputer = (mPrefs.getBoolean(getResources().getString(R.string.pref_key_cheatsComputerHandUnlocked), false) &&
+				mPrefs.getBoolean(getResources().getString(R.string.pref_key_cheatsComputerHand), false));
+		
+		mCheatsEnabled = (mCheatsWin || mCheatsTrash || mCheatsShowComputer);
+		
+		
 		mGameEngine.updatePrefs();
 		
 		// Run last to ensure everything is set up properly first
 		mGameEngine.resume();
 	}
 	
-	/** Called when the activity is being sent to the background **/
 	@Override
 	protected void onPause() {
 		mGameEngine.pause();
 		super.onPause();
 	}
 	
-	/** Called to finish the application **/
 	@Override
 	public void finish() {
 		mGameEngine.stop();
-		mGameEngine.freeUp();
 		super.finish();
 	}
 	
+	/**
+	 * Shows a toast with a given message and short length.
+	 * @param message The message to display.
+	 */
 	private void showToast(String message) {
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 	}
 	
-	// Methods for handling key presses	
-	/** Back button with support for Android 1.6) **/
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 	    if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -126,7 +161,6 @@ public class Game extends Activity implements Observer {
 	    return super.onKeyDown(keyCode, event);
 	}
 	
-	/** Handles the menu key press **/
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		menu.clear();
@@ -147,25 +181,25 @@ public class Game extends Activity implements Observer {
 		menu.add(0, Main.MENU_PREFS, 0, R.string.menu_prefs).setIcon(R.drawable.ic_menu_preferences);
 		menu.add(0, Main.MENU_HELP, 0, R.string.menu_help).setIcon(R.drawable.ic_menu_help);
 		menu.add(0, Main.MENU_ABOUT, 0, R.string.menu_about).setIcon(R.drawable.ic_menu_about);
-		if (mGameEngine.isSinglePlayer() && mGameEngine.winner() == -1 && mGameEngine.turn() == 0 && mPrefs.getBoolean(getResources().getString(R.string.pref_key_cheatsEnabled), false)) {
+		if (mNumPlayers == 1 && mGameEngine.winner() == -1 && mGameEngine.turn() == 0 && mCheatsEnabled) {
 			SubMenu cheats = menu.addSubMenu(R.string.menu_cheats);
 			cheats.setIcon(R.drawable.ic_menu_more);
-			cheats.add(0, Main.MENU_WIN, 0, R.string.menu_win);
-			cheats.add(0, Main.MENU_TRASH, 0, R.string.menu_trash);
+			if (mCheatsWin) cheats.add(0, Main.MENU_WIN, 0, R.string.menu_win);
+			if (mCheatsTrash) cheats.add(0, Main.MENU_TRASH, 0, R.string.menu_trash);
+			if (mCheatsShowComputer) cheats.add(0, Main.MENU_SHOW_COMPUTER, 0, R.string.menu_showComputer);
 		}
 		return true;
 	}
 	
-	/** Handles menu item selections **/
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case Main.MENU_ABOUT:
-			Intent aboutIntent = new Intent(this, About.class);
+			Intent aboutIntent = new Intent(this, AboutActivity.class);
 			startActivity(aboutIntent);
 			return true;
 		case Main.MENU_HELP:
-			Intent helpIntent = new Intent(this, Help.class);
+			Intent helpIntent = new Intent(this, HelpActivity.class);
 			startActivity(helpIntent);
 			return true;
 		case Main.MENU_UNDO:
@@ -175,9 +209,8 @@ public class Game extends Activity implements Observer {
 			mGameEngine.sortHand();
 			return true;
 		case Main.MENU_PLAYAGAIN:
-			Intent playAgainIntent = this.getIntent();
-			startActivity(playAgainIntent);
-			finish();
+			mGameEngine.Initialize();
+			mGameEngine.newGame();
 			return true;
 		case Main.MENU_PREFS:
 			Intent prefsIntent = new Intent(this, Preferences.class);
@@ -189,11 +222,13 @@ public class Game extends Activity implements Observer {
 		case Main.MENU_TRASH:
 			mGameEngine.trash();
 			return true;
+		case Main.MENU_SHOW_COMPUTER:
+			mGameEngine.toggleShowComputerHand();
+			break;
 		}
 		return false;
 	}
 	
-	/** Called when a Dialog is created **/
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {

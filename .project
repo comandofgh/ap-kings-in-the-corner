@@ -3,6 +3,7 @@
 	<name>KingsintheCorner</name>
 	<comment></comment>
 	<projects>
+		<project>DevmilColor</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

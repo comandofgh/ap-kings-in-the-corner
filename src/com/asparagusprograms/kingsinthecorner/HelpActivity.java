@@ -1,5 +1,5 @@
 /**
- * Copyright 2010 Trevor Boyce
+ * Copyright 2010,2011 Trevor Boyce
  * 
  * This file is part of Kings in the Corner.
  *
@@ -29,11 +29,10 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 
-public class Help extends Activity {
+public class HelpActivity extends Activity {
 	private ConnectivityManager connMgr;
 	private android.net.NetworkInfo networkInfo;
 
-	/** Called when the activity is first created. */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
