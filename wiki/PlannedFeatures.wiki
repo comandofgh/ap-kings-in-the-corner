@@ -4,13 +4,9 @@
 
   * Play 2-4 player modes with all computer controlled opponents
 
-  * Ability to change card styles mid-game
-
 = Long-Term Goals =
 
   * Play multi-player games across devices using bluetooth
-
-  * New main menu background and redesign statistics page - Any suggestions?
 
 
 *Notice:* The features listed on this page are not definite and may or may not actually make it into the game.
