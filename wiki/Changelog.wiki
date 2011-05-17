@@ -1,5 +1,11 @@
 #summary All the changes since the game's conception.
 ===Full Builds===
+*Version 1.5.3*
+  * Disable the AI from holding cards on any difficulty settings.
+
+*Version 1.5.1 & 1.5.2*
+  * Bug fixes
+
 *Version 1.5.0*
   * New main menu buttons and slightly lighter background
   * New card backs and table images
