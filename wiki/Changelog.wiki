@@ -1,7 +1,13 @@
 #summary All the changes since the game's conception.
 ===Full Builds===
+*Version 1.5.6*
+  * Bug fixes for people who were unable to play single player games but could play multi-player games
+
+*Version 1.5.4*
+  * Added an extra difficulty where the computer will occasionally hold cards
+
 *Version 1.5.3*
-  * Disable the AI from holding cards on any difficulty settings.
+  * Disable the AI from holding cards on any difficulty settings
 
 *Version 1.5.1 & 1.5.2*
   * Bug fixes
