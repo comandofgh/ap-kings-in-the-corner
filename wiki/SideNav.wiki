@@ -1,7 +1,6 @@
   * [MainPage Welcome]
   * Release Information
     * [Changelog Changelog]
-    * [PlannedFeatures Planned Features]
   * Help Documentation
     * [GameplayHelp How To Play]
     * [ModesHelp Game Modes]
