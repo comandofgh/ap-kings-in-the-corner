@@ -1,6 +1,7 @@
 #summary Information regarding the beta builds of version 2.0.0
 
 = Version 2.0.0 =
+<b>Use the Issues tab at the top of this site for any bugs/requests</b>
 
 The plan for this version is to have all the features of the (now removed) TEST version, as well as all the features of the current release version. The major feature that still needs to be added is animations.
 
