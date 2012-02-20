@@ -1,4 +1,0 @@
-#summary Table of Contents
-#sidebar SideNav
-
-= Welcome to the wiki page! =
