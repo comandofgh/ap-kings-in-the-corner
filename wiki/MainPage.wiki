@@ -15,6 +15,5 @@ Here are the general topics covered and a brief description of each:
 
   * Help
     * [GameplayHelp How To Play] - The rules of the game
-    * [ModesHelp Game Modes] - Explanation of single player and multi-player game modes
     * [HintsHelp Hints & Tips] - Helpful hints that make the game go more smoothly
     * [IssuesHelp Reporting Issues] - How to contact the developers if a problem arises
