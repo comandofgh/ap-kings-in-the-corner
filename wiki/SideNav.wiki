@@ -2,6 +2,5 @@
     * [Changelog Changelog]
   * Help Documentation
     * [GameplayHelp How To Play]
-    * [ModesHelp Game Modes]
     * [HintsHelp Hints & Tips]
     * [IssuesHelp Resolving Issues]
