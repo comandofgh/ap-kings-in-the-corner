@@ -4,13 +4,3 @@
 
 = Welcome to the wiki page! =
 
-
-= Table of Contents =
-
-  * Project Information
-    * [Changelog Changelog] - All the changes that have been made to the game
-
-  * Help
-    * [GameplayHelp How To Play] - The rules of the game
-    * [HintsHelp Hints & Tips] - Helpful hints that make the game go more smoothly
-    * [IssuesHelp Reporting Issues] - How to contact the developers if a problem arises
