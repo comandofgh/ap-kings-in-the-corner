@@ -7,11 +7,4 @@
 
 = Table of Contents =
 
-Here are the general topics covered and a brief description of each:
-  * [MainPage Project Information] - This page
-    * [Changelog Changelog] - All the changes that have been made to the game
-
-  * Help
-    * [GameplayHelp How To Play] - The rules of the game
-    * [HintsHelp Hints & Tips] - Helpful hints that make the game go more smoothly
-    * [IssuesHelp Reporting Issues] - How to contact the developers if a problem arises
+<wiki:toc max_depth="1" />
