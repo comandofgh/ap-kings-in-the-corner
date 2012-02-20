@@ -8,9 +8,7 @@
 = Table of Contents =
 
 Here are the general topics covered and a brief description of each:
-  * [MainPage Welcome] - This page
-
-  * Release Information  
+  * [MainPage Project Information] - This page
     * [Changelog Changelog] - All the changes that have been made to the game
 
   * Help
