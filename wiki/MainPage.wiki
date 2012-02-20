@@ -11,7 +11,6 @@ Here are the general topics covered and a brief description of each:
 
   * Release Information  
     * [Changelog Changelog] - All the changes that have been made to the game
-    * [PlannedFeatures Planned Features] - Information about upcoming releases
 
   * Help
     * [GameplayHelp How To Play] - The rules of the game
