@@ -1,5 +1,6 @@
   * Project Information
     * [Changelog Changelog]
+    * [BetaDetails Beta build]
   * Help Documentation
     * [GameplayHelp How To Play]
     * [HintsHelp Hints & Tips]
