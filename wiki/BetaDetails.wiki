@@ -7,4 +7,4 @@ The plan for this version is to have all the features of the (now removed) TEST 
 Some of the changes in this version include:
   * Tablet optimization. This version uses higher resolution images (all made by me, so don't complain) as well as dynamic resizing and positioning of card images based on screen size. No more blurry or tiny cards and weird layouts for tablets! YAY
 
-  * Performance improvements. This version should have massive improvements in performance and memory usage compared to previous versions. You may not notice it much, but you would if the old version used the higher resolution images ;)
+  * Performance improvements. This version should have massive improvements in performance and memory usage compared to previous versions. You may not notice it much, but you would if the old version used the same higher resolution images ;)
