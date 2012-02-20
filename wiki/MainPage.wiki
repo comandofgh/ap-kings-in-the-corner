@@ -3,10 +3,6 @@
 
 = Welcome to the wiki page! =
 
-To the left you will find links to all the topics covered by this wiki.
-Leave a comment at the bottom of this page if you feel a new topic needs to be added.
-If you feel there needs to be an addition to an already existing topic, leave a comment at the bottom of the page you feel it belongs with.
-
 
 = Table of Contents =
 
