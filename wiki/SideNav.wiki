@@ -1,4 +1,4 @@
-  * [MainPage Welcome]
+  * [MainPage Project Information]
     * [Changelog Changelog]
   * Help Documentation
     * [GameplayHelp How To Play]
