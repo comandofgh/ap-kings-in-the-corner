@@ -1,5 +1,6 @@
 #summary Table of Contents
 #labels Featured
+#sidebar SideNav
 
 = Table of Contents =
 
