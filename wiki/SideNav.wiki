@@ -1,4 +1,4 @@
-  * [MainPage Project Information]
+  * Project Information
     * [Changelog Changelog]
   * Help Documentation
     * [GameplayHelp How To Play]
