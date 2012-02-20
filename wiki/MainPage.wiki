@@ -1,6 +1,4 @@
 #summary Table of Contents
-#labels Featured
 #sidebar SideNav
 
 = Welcome to the wiki page! =
-
