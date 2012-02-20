@@ -1,5 +1,8 @@
 #summary All the changes since the game's conception.
 ===Full Builds===
+*Version 1.5.81*
+  * Fixed settings crash
+
 *Version 1.5.6*
   * Bug fixes for people who were unable to play single player games but could play multi-player games
 
