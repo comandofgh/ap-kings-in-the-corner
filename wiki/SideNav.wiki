@@ -1,5 +1,4 @@
   * [MainPage Welcome]
-  * Release Information
     * [Changelog Changelog]
   * Help Documentation
     * [GameplayHelp How To Play]
