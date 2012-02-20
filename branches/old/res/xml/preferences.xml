@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android" android:title="@string/pref_title_settings" android:key="@string/pref_key_settings">
+
+    <PreferenceScreen android:summary="@string/pref_summary_userSettings" android:title="@string/pref_title_userSettings" android:key="@string/pref_key_userSettings"><ListPreference android:key="@string/pref_key_username" android:title="@string/pref_title_username" android:summary="@string/pref_summary_username" android:entries="@array/entries_user" android:entryValues="@array/entryvalues_user" android:dialogTitle="@string/dialog_title_selectUser" android:defaultValue="@string/username_none" /><EditTextPreference android:key="@string/pref_key_newUser" android:title="@string/pref_title_createUser" android:summary="@string/pref_summary_createUser" /><PreferenceScreen android:key="@string/pref_key_userAdvanced" android:title="@string/pref_title_userAdvanced" android:summary="@string/pref_summary_userAdvanced">
+				
+			<PreferenceScreen android:title="@string/pref_title_removeUser" android:summary="@string/pref_summary_removeUser" android:dependency="@string/pref_key_username">
+
+            	<intent android:action="com.asparagusprograms.REMOVE_USER" />
+
+        	</PreferenceScreen>
+        	
+        	<PreferenceScreen android:key="@string/pref_key_clearSaves" android:title="@string/pref_title_clearSaves" android:summary="@string/pref_summary_clearSaves"></PreferenceScreen>
+				
+				<CheckBoxPreference android:key="@string/pref_key_noUserWarning" android:title="@string/pref_title_noUserWarning" android:summary="@string/pref_summary_noUserWarning" android:defaultValue="true" />
+                	
+			</PreferenceScreen>
+			
+	</PreferenceScreen>
+    
+    <PreferenceScreen android:summary="@string/pref_summary_gameplaySettings" android:title="@string/pref_title_gameplaySettings" android:key="@string/pref_key_gameplaySettings">
+            
+        <ListPreference android:entries="@array/entries_difficulty" android:entryValues="@array/entryvalues_difficulty" android:dialogTitle="@string/dialog_title_difficulty" android:title="@string/pref_title_difficulty" android:key="@string/pref_key_difficulty" android:summary="@string/pref_summary_difficulty" android:defaultValue="0"></ListPreference><com.asparagusprograms.kingsinthecorner.SeekBarPreference android:summary="@string/pref_summary_computerDelay" android:max="3000" android:title="@string/pref_title_computerDelay" android:text=" milliseconds" android:key="@string/pref_key_computerDelay" android:dialogMessage="Set Delay" android:defaultValue="1000" />
+            
+		<CheckBoxPreference android:key="@string/pref_key_autosave" android:title="@string/pref_title_autosave" android:summary="@string/pref_summary_autosave" />
+                
+    	<CheckBoxPreference android:key="@string/pref_key_sortHand" android:title="@string/pref_title_sortHand" android:summary="@string/pref_summary_sortHand" />
+                                
+		<CheckBoxPreference android:key="@string/pref_key_emptyDeckWarning" android:title="@string/pref_title_emptyDeckWarning" android:summary="@string/pref_summary_emptyDeckWarning" android:defaultValue="true" />
+                
+		
+  
+	</PreferenceScreen>
+
+    <PreferenceScreen android:summary="@string/pref_summary_displaySettings" android:key="@string/pref_key_displaySettings" android:title="@string/pref_title_displaySettings">
+            
+		<PreferenceScreen android:key="@string/pref_key_imageSettings" android:summary="@string/pref_summary_imageSettings" android:title="@string/pref_title_imageSettings">
+<ListPreference android:key="@string/pref_key_cardImage" android:title="@string/pref_title_cardImage" android:summary="@string/pref_summary_cardImage" android:entries="@array/entries_cardImages" android:entryValues="@array/entryvalues_cardImages" android:dialogTitle="@string/dialog_title_cardImages" android:defaultValue="@string/cardImage_default" /><ListPreference android:key="@string/pref_key_cardBack" android:summary="@string/pref_summary_cardBack" android:title="@string/pref_title_cardBack" android:dialogTitle="@string/pref_title_cardBack" android:entries="@array/entries_cardBacks" android:entryValues="@array/entryvalues_cardBacks" android:defaultValue="@string/cardBack_default"></ListPreference><ListPreference android:key="@string/pref_key_tableImage" android:defaultValue="@string/tableImage_default" android:summary="@string/pref_summary_tableImage" android:title="@string/pref_title_tableImage" android:entryValues="@array/entryvalues_tableImages" android:entries="@array/entries_tableImages"></ListPreference>
+</PreferenceScreen><PreferenceScreen android:key="@string/pref_key_colorSettings" android:summary="@string/pref_summary_colorSettings" android:title="@string/pref_title_colorSettings"><PreferenceScreen android:summary="@string/pref_summary_drawPileCountColor" android:key="@string/pref_key_drawPileCountColor" android:title="@string/pref_title_drawPileCountColor"></PreferenceScreen><PreferenceScreen android:key="@string/pref_key_scoreColor" android:summary="@string/pref_summary_scoreColor" android:title="@string/pref_title_scoreColor"></PreferenceScreen>
+</PreferenceScreen>
+
+        <CheckBoxPreference android:key="@string/pref_key_drawPileCount" android:title="@string/pref_title_drawPileCount" android:summary="@string/pref_summary_drawPileCount" />
+                
+		<CheckBoxPreference android:key="@string/pref_key_highlightCards" android:title="@string/pref_title_hightlightCards" android:summary="@string/pref_summary_highlightCards" android:defaultValue="true" />
+		<CheckBoxPreference android:title="@string/pref_title_clearFullCorners" android:key="@string/pref_key_clearFullCorners" android:summary="@string/pref_summary_clearFullCorners" android:defaultValue="true"></CheckBoxPreference>
+                
+	
+
+</PreferenceScreen><PreferenceScreen android:summary="@string/pref_summary_cheatScreen" android:title="@string/pref_title_cheatScreen" android:key="@string/pref_key_cheatScreen">
+				
+			<EditTextPreference android:summary="@string/pref_summary_enterCode" android:key="@string/pref_key_enterCode" android:title="@string/pref_title_enterCode"></EditTextPreference>
+                	
+       		
+                	
+		
+
+
+
+<PreferenceCategory android:key="@string/pref_key_cheatsCategory" android:title="@string/pref_title_cheatsCategory"><CheckBoxPreference android:defaultValue="false" android:title="@string/pref_title_cheatsComputerHand" android:key="@string/pref_key_cheatsComputerHand"/><CheckBoxPreference android:title="@string/pref_title_cheatsWin" android:key="@string/pref_key_cheatsWin" android:defaultValue="false"></CheckBoxPreference><CheckBoxPreference android:title="@string/pref_title_cheatsTrash" android:key="@string/pref_key_cheatsTrash" android:defaultValue="false"></CheckBoxPreference><PreferenceScreen android:summary="@string/pref_summary_disableCheats" android:key="@string/pref_key_disableCheats" android:title="@string/pref_title_disableCheats"></PreferenceScreen>
+</PreferenceCategory>
+</PreferenceScreen><PreferenceScreen android:title="@string/pref_title_advancedSettings" android:summary="@string/pref_summary_advancedSettings" android:key="@string/pref_key_advancedSettings">
+    <CheckBoxPreference android:title="@string/pref_title_allowBackupManager" android:summary="@string/pref_summary_allowBackupManager" android:key="@string/pref_key_allowBackupManager" android:defaultValue="false"></CheckBoxPreference>
+    <PreferenceScreen android:selectable="false" android:summary="@string/pref_summary_allowBackupManagerInfo" android:key="@string/pref_key_allowBackupManagerInfo"></PreferenceScreen>
+</PreferenceScreen><PreferenceScreen android:title="@string/pref_title_applicationInformation" android:key="@string/pref_key_applicationInformation">
+
+        <PreferenceScreen android:key="@string/pref_key_update" android:title="@string/pref_title_update" android:summary="@string/app_version">
+        </PreferenceScreen>
+
+        <PreferenceScreen android:title="@string/pref_title_website" android:summary="@string/pref_summary_website">
+
+            <intent android:action="android.intent.action.VIEW" android:data="@string/link_website" />
+
+        </PreferenceScreen>
+      			
+       	<PreferenceScreen android:key="@string/pref_key_email" android:title="@string/pref_title_email" android:summary="@string/pref_summary_email"></PreferenceScreen>	
+
+    </PreferenceScreen>
+
+	
+
+</PreferenceScreen>
