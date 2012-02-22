@@ -11,4 +11,4 @@ Some of the changes in this version include:
   * Performance improvements. This version should have massive improvements in performance and memory usage compared to previous versions. You may not notice it much, but you would if the old version used the same higher resolution images ;)
 
 ===Currently working on:===
-  * Animations. Finished animations for dealing cards, now working on computer playing animations.
+  * Animations. Finished animations for drawing a card at the start of a turn. Now working on computer playing animations.
