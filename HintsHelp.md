@@ -1,0 +1,11 @@
+## Hints & Tips ##
+
+  * Instead of playing a card in an empty space and then moving a pile on top of it, you can play the card directly under a pile. This move will not be highlighted and only works when there is at least one empty space.
+
+  * Autosave will save the game automatically when you quit. It also saves the game when you switch to another application, press the home button, and after each player's turn. This way there is little chance of losing your progress.
+
+  * Any dialog box, except "Player x's turn", can be canceled by pressing the back button. This will remove the dialog without performing any actions.
+
+  * The undo button is only available in single player mode and is limited to undoing the last card played from your hand.
+
+  * Choosing "Sort Hand" from the menu will toggle on auto-sort which will automatically sort cards as they are added to your hand. To turn it off, simply choose "Stop Sort" from the menu.
